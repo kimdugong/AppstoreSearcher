@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SearchViewController: UIViewController {
 
-    private lazy var searchController: UISearchController = {
+    private var searchController: UISearchController = {
         let searchResultViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SearchResultsViewController")
         let searchController = UISearchController(searchResultsController: searchResultViewController)
+        searchController.searchResultsUpdater = searchResultViewController as? UISearchResultsUpdating
         searchController.searchBar.placeholder = "Games, Apps, and More"
         return searchController
     }()

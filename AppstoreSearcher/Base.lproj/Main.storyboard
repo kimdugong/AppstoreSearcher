@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AppstoreSearcher" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SearchViewController" customModule="AppstoreSearcher" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,14 +57,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchResultTableViewCell" id="80x-Ra-bo6" customClass="SearchResultTableViewCell" customModule="AppstoreSearcher" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="80x-Ra-bo6" id="ndM-zc-2xI">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ApK-vc-aSt">
-                                                    <rect key="frame" x="16" y="12" width="20" height="20"/>
+                                                    <rect key="frame" x="16" y="11.5" width="20" height="20"/>
                                                     <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="ZoX-Y8-O0a"/>
@@ -72,17 +72,18 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83s-Cp-wMk">
-                                                    <rect key="frame" x="44" y="11.5" width="342" height="21"/>
+                                                    <rect key="frame" x="44" y="11" width="342" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="83s-Cp-wMk" firstAttribute="top" secondItem="ndM-zc-2xI" secondAttribute="topMargin" id="88g-cS-Zbu"/>
                                                 <constraint firstItem="83s-Cp-wMk" firstAttribute="leading" secondItem="ApK-vc-aSt" secondAttribute="trailing" constant="8" id="GMR-HA-GUf"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="83s-Cp-wMk" secondAttribute="trailing" constant="8" id="MJF-Zp-A7l"/>
-                                                <constraint firstItem="83s-Cp-wMk" firstAttribute="centerY" secondItem="ndM-zc-2xI" secondAttribute="centerY" id="aBf-Db-7vq"/>
                                                 <constraint firstItem="ApK-vc-aSt" firstAttribute="leading" secondItem="ndM-zc-2xI" secondAttribute="leading" constant="16" id="dSI-wi-BRO"/>
+                                                <constraint firstItem="83s-Cp-wMk" firstAttribute="bottom" secondItem="ndM-zc-2xI" secondAttribute="bottomMargin" id="dmL-D3-jV7"/>
                                                 <constraint firstItem="ApK-vc-aSt" firstAttribute="centerY" secondItem="ndM-zc-2xI" secondAttribute="centerY" id="vCo-pv-tUk"/>
                                             </constraints>
                                         </tableViewCellContentView>
