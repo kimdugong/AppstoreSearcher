@@ -13,6 +13,8 @@
 		42426B5C24DA462300DFB7E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42426B5A24DA462300DFB7E3 /* Main.storyboard */; };
 		42426B5E24DA462700DFB7E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42426B5D24DA462700DFB7E3 /* Assets.xcassets */; };
 		42426B6124DA462700DFB7E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42426B5F24DA462700DFB7E3 /* LaunchScreen.storyboard */; };
+		42426B6924DA67AB00DFB7E3 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42426B6824DA67AA00DFB7E3 /* SearchResultsViewController.swift */; };
+		42426B6B24DA6ECB00DFB7E3 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42426B6A24DA6ECB00DFB7E3 /* SearchResultTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		42426B5D24DA462700DFB7E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42426B6024DA462700DFB7E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		42426B6224DA462700DFB7E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42426B6824DA67AA00DFB7E3 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		42426B6A24DA6ECB00DFB7E3 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				42426B5D24DA462700DFB7E3 /* Assets.xcassets */,
 				42426B5F24DA462700DFB7E3 /* LaunchScreen.storyboard */,
 				42426B6224DA462700DFB7E3 /* Info.plist */,
+				42426B6824DA67AA00DFB7E3 /* SearchResultsViewController.swift */,
+				42426B6A24DA6ECB00DFB7E3 /* SearchResultTableViewCell.swift */,
 			);
 			path = AppstoreSearcher;
 			sourceTree = "<group>";
@@ -139,6 +145,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				42426B5924DA462300DFB7E3 /* ViewController.swift in Sources */,
+				42426B6B24DA6ECB00DFB7E3 /* SearchResultTableViewCell.swift in Sources */,
+				42426B6924DA67AB00DFB7E3 /* SearchResultsViewController.swift in Sources */,
 				42426B5524DA462300DFB7E3 /* AppDelegate.swift in Sources */,
 				42426B5724DA462300DFB7E3 /* SceneDelegate.swift in Sources */,
 			);
