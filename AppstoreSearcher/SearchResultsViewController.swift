@@ -19,40 +19,38 @@ class SearchResultsViewController: UIViewController {
         "app3"
     ]
 
-    let viewModel = SearchResultsViewModel(history: sampleData)
+    private let viewModel = SearchResultsViewModel(history: sampleData)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.tableFooterView = UIView()
 
-        tableView.delegate = self
-        tableView.dataSource = self
-
-        viewModel.searchText.subscribe(onNext: { (searchText) in
-            print(searchText)
-        })
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
+        
+        viewModel.filteredHistory.asObservable().bind(to: tableView.rx.items(cellIdentifier: SearchResultViewCell.identifier, cellType: SearchResultViewCell.self)){ (row, history, cell) in
+            cell.titleLabel.text = history
+        }.disposed(by: disposeBag)
     }
 }
 
-extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.history.count
+extension SearchResultsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultTableViewCell", for: indexPath) as? SearchResultTableViewCell else {
-            return UITableViewCell()
-        }
-        cell.titleLabel.text = viewModel.history[indexPath.row]
-
-        return cell
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
-
-
 }
 
 extension SearchResultsViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
-        searchController.searchBar.rx.text.bind(to: viewModel.searchText).disposed(by: disposeBag)
+//        searchController.searchBar.rx.text.bind(to: viewModel.searchText).disposed(by: disposeBag)
+        guard let searchText = searchController.searchBar.text else {
+            return
+        }
+        viewModel.searchText.accept(searchText)
     }
 }

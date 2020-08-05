@@ -1,5 +1,5 @@
 //
-//  SearchResultTableViewCell.swift
+//  SearchResultViewCell.swift
 //  AppstoreSearcher
 //
 //  Created by Dugong on 2020/08/05.
@@ -8,10 +8,12 @@
 
 import UIKit
 
-class SearchResultTableViewCell: UITableViewCell {
+class SearchResultViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
 
+    static let identifier = "SearchResultViewCell"
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

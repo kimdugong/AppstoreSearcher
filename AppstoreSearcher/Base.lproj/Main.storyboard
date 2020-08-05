@@ -17,14 +17,49 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g5u-bW-1p8">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="cQC-7e-3A9">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최근 검색어" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMx-fS-rFP">
+                                            <rect key="frame" x="16" y="28" width="109" height="29"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <constraints>
+                                        <constraint firstItem="jMx-fS-rFP" firstAttribute="leading" secondItem="cQC-7e-3A9" secondAttribute="leading" constant="16" id="1eB-WO-6ph"/>
+                                        <constraint firstAttribute="bottom" secondItem="jMx-fS-rFP" secondAttribute="bottom" constant="8" id="Xah-aV-Xi5"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jMx-fS-rFP" secondAttribute="trailing" constant="20" symbolic="YES" id="ahG-BT-RMd"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="z0F-Sc-eI8">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchViewCell" rowHeight="55" id="U0b-PP-m1a" customClass="SearchViewCell" customModule="AppstoreSearcher" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="93" width="414" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="z0F-Sc-eI8" id="HnA-VX-Hec">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U0b-PP-m1a" id="olj-T3-IaH">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Erx-rD-Ag9">
+                                                    <rect key="frame" x="20" y="19" width="374" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Erx-rD-Ag9" secondAttribute="bottom" constant="8" id="KNC-9l-MIa"/>
+                                                <constraint firstItem="Erx-rD-Ag9" firstAttribute="top" secondItem="olj-T3-IaH" secondAttribute="topMargin" constant="8" id="L8W-NG-FqA"/>
+                                                <constraint firstItem="Erx-rD-Ag9" firstAttribute="leading" secondItem="olj-T3-IaH" secondAttribute="leadingMargin" id="iN0-Dy-4rn"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Erx-rD-Ag9" secondAttribute="trailing" id="lDE-zR-4lY"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="Erx-rD-Ag9" id="PxP-dq-z6X"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -39,6 +74,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="q4Y-JP-ttO"/>
+                    <connections>
+                        <outlet property="tableView" destination="g5u-bW-1p8" id="Nca-gK-BOT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -54,9 +92,8 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wYz-aJ-QyL">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchResultTableViewCell" id="80x-Ra-bo6" customClass="SearchResultTableViewCell" customModule="AppstoreSearcher" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchResultViewCell" id="80x-Ra-bo6" customClass="SearchResultViewCell" customModule="AppstoreSearcher" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="80x-Ra-bo6" id="ndM-zc-2xI">
