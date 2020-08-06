@@ -17,6 +17,8 @@
 		42426B6B24DA6ECB00DFB7E3 /* SearchResultViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42426B6A24DA6ECB00DFB7E3 /* SearchResultViewCell.swift */; };
 		42426B7124DA920800DFB7E3 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42426B7024DA920800DFB7E3 /* SearchViewModel.swift */; };
 		4252767B24DBB2F40043ACEB /* AppListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252767A24DBB2F40043ACEB /* AppListViewController.swift */; };
+		4252767E24DBDEB00043ACEB /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252767D24DBDEB00043ACEB /* App.swift */; };
+		4252768024DBDF010043ACEB /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252767F24DBDF010043ACEB /* Response.swift */; };
 		429122E624DAF4A400E5B097 /* SearchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429122E524DAF4A400E5B097 /* SearchViewCell.swift */; };
 		E6D6437110BF1EDC1817684F /* Pods_AppstoreSearcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BABF69796D6140DBE4732847 /* Pods_AppstoreSearcher.framework */; };
 /* End PBXBuildFile section */
@@ -34,6 +36,8 @@
 		42426B6A24DA6ECB00DFB7E3 /* SearchResultViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewCell.swift; sourceTree = "<group>"; };
 		42426B7024DA920800DFB7E3 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		4252767A24DBB2F40043ACEB /* AppListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppListViewController.swift; sourceTree = "<group>"; };
+		4252767D24DBDEB00043ACEB /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		4252767F24DBDF010043ACEB /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		429122E524DAF4A400E5B097 /* SearchViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewCell.swift; sourceTree = "<group>"; };
 		9732A6938823769425A9AD71 /* Pods-AppstoreSearcher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppstoreSearcher.release.xcconfig"; path = "Target Support Files/Pods-AppstoreSearcher/Pods-AppstoreSearcher.release.xcconfig"; sourceTree = "<group>"; };
 		BABF69796D6140DBE4732847 /* Pods_AppstoreSearcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppstoreSearcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +77,7 @@
 		42426B5324DA462300DFB7E3 /* AppstoreSearcher */ = {
 			isa = PBXGroup;
 			children = (
+				4252767C24DBDE610043ACEB /* Model */,
 				42426B6D24DA8ADF00DFB7E3 /* ViewModel */,
 				42426B6C24DA8AB100DFB7E3 /* SupportFile */,
 				42426B5824DA462300DFB7E3 /* SearchViewController.swift */,
@@ -103,6 +108,15 @@
 				42426B7024DA920800DFB7E3 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4252767C24DBDE610043ACEB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4252767D24DBDEB00043ACEB /* App.swift */,
+				4252767F24DBDF010043ACEB /* Response.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B02BF8883FCB011F8F059540 /* Frameworks */ = {
@@ -237,9 +251,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4252767E24DBDEB00043ACEB /* App.swift in Sources */,
 				429122E624DAF4A400E5B097 /* SearchViewCell.swift in Sources */,
 				42426B5924DA462300DFB7E3 /* SearchViewController.swift in Sources */,
 				4252767B24DBB2F40043ACEB /* AppListViewController.swift in Sources */,
+				4252768024DBDF010043ACEB /* Response.swift in Sources */,
 				42426B7124DA920800DFB7E3 /* SearchViewModel.swift in Sources */,
 				42426B6B24DA6ECB00DFB7E3 /* SearchResultViewCell.swift in Sources */,
 				42426B6924DA67AB00DFB7E3 /* SearchResultsViewController.swift in Sources */,

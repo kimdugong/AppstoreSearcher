@@ -3,4 +3,70 @@
    uuid = "13095998-9FCF-42A2-9706-257E9E1EEB7E"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "222D33A5-33F1-4FCD-966D-A9B2DB31D7BD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AppstoreSearcher/SearchResultsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "bind()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AC9215B8-D198-49DE-BB46-67A6A818215A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AppstoreSearcher/SearchResultsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "bind()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AC9215B8-D198-49DE-BB46-67A6A818215A - 9c683234211dc794"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AppstoreSearcher.SearchResultsViewController.(bind in _62B5EFFBBA5033ABE4A2AC64006C01A9)() -&gt; ()"
+                  moduleName = "AppstoreSearcher"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dugong/Developer/ios-course/AppstoreSearcher/AppstoreSearcher/SearchResultsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "3517">
+               </Location>
+               <Location
+                  uuid = "AC9215B8-D198-49DE-BB46-67A6A818215A - 53b846c83219f341"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (Swift.Array&lt;AppstoreSearcher.App&gt;) -&gt; () in AppstoreSearcher.SearchResultsViewController.(bind in _62B5EFFBBA5033ABE4A2AC64006C01A9)() -&gt; ()"
+                  moduleName = "AppstoreSearcher"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dugong/Developer/ios-course/AppstoreSearcher/AppstoreSearcher/SearchResultsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "97">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

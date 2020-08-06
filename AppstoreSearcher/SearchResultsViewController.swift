@@ -12,23 +12,18 @@ import RxSwift
 class SearchResultsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var appListView: UIView!
     private let disposeBag = DisposeBag()
-    //    static var sampleData: [String] = [
-    //        "app1",
-    //        "app2",
-    //        "app3"
-    //    ]
 
-    //    private let viewModel = SearchViewModel(history: sampleData)
     var viewModel: SearchViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.tableFooterView = UIView()
-        viewModel.inputs.searchText.subscribe(onNext: { (query) in
-            debugPrint("searchText", query)
-        }).disposed(by: disposeBag)
+//        viewModel.inputs.searchText.subscribe(onNext: { (query) in
+//            debugPrint("searchText", query)
+//        }).disposed(by: disposeBag)
 
         bind()
     }
@@ -40,12 +35,17 @@ class SearchResultsViewController: UIViewController {
 
         tableView.rx.modelSelected(String.self).subscribe(onNext: { [unowned self] (query) in
             debugPrint("modelSelected", query)
-
+            self.viewModel.inputs.requestSearch(with: query)
         }).disposed(by: disposeBag)
 
         viewModel.outputs.filteredHistory.asObservable().bind(to: tableView.rx.items(cellIdentifier: SearchResultViewCell.identifier, cellType: SearchResultViewCell.self)){ (row, history, cell) in
             cell.titleLabel.text = history
         }.disposed(by: disposeBag)
+
+        viewModel.outputs.appList.subscribe(onNext: { [unowned self] appList in
+            debugPrint(appList)
+            self.appListView.isHidden = false
+        }).disposed(by: disposeBag)
 
     }
 }

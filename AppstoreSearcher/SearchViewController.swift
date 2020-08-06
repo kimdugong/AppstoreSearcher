@@ -10,8 +10,8 @@ import UIKit
 import RxSwift
 
 class SearchViewController: UIViewController {
-    
     @IBOutlet weak var tableView: UITableView!
+
     private let disposeBag = DisposeBag()
     
     static var sampleData: [String] = [
@@ -30,7 +30,7 @@ class SearchViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Games, Apps, and More"
         return searchController
-    }()
+        }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,15 +43,23 @@ class SearchViewController: UIViewController {
         bind()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toSearchResultsView" {
+            if let destination = segue.destination as? SearchResultsViewController {
+                destination.viewModel = viewModel
+            }
+        }
+    }
+
     private func bind() {
         searchController.searchBar.rx.text.orEmpty.bind(to: viewModel.inputs.searchText).disposed(by: disposeBag)
 
         searchController.searchBar.rx.searchButtonClicked.withLatestFrom(viewModel.inputs.searchText).subscribe(onNext: { [unowned self] (query) in
             self.viewModel.inputs.addHistory(with: query)
-            }).disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
 
         tableView.rx.modelSelected(String.self).subscribe(onNext: { [unowned self] (query) in
-            self.searchController.isActive = true
+            self.viewModel.inputs.searchControllerIsActive.onNext(true)
             self.searchController.searchBar.rx.text.onNext(query)
         }).disposed(by: disposeBag)
 
@@ -62,6 +70,10 @@ class SearchViewController: UIViewController {
         viewModel.outputs.historySubject.bind(to: tableView.rx.items(cellIdentifier: SearchViewCell.identifier, cellType: SearchViewCell.self)) { (row, history, cell) in
             cell.titleLabel.text = history
         }.disposed(by: disposeBag)
+
+        viewModel.outputs.searchControllerIsActiveSubject.drive(onNext: { isActive in
+            self.searchController.isActive = isActive
+        }).disposed(by: disposeBag)
 
     }
     
