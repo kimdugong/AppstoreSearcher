@@ -12,6 +12,8 @@ class AppListViewController: UIViewController {
 
     @IBOutlet weak var queryLabel: UILabel!
     
+    var viewModel: SearchViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

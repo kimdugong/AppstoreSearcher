@@ -23,10 +23,10 @@ class SearchViewController: UIViewController {
     private let viewModel = SearchViewModel(history: sampleData)
     
     private lazy var searchController: UISearchController = { [weak self] in
-        let searchResultViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SearchResultsViewController") as SearchResultsViewController
-        searchResultViewController.viewModel = self?.viewModel
-        let searchController = UISearchController(searchResultsController: searchResultViewController)
-        searchController.searchResultsUpdater = searchResultViewController as? UISearchResultsUpdating
+        let searchResultContainerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SearchResultContainerViewController") as SearchResultContainerViewController
+        searchResultContainerViewController.viewModel = self?.viewModel
+        let searchController = UISearchController(searchResultsController: searchResultContainerViewController)
+        searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Games, Apps, and More"
         return searchController
@@ -45,7 +45,7 @@ class SearchViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toSearchResultsView" {
-            if let destination = segue.destination as? SearchResultsViewController {
+            if let destination = segue.destination as? HistoryViewController {
                 destination.viewModel = viewModel
             }
         }
@@ -75,6 +75,16 @@ class SearchViewController: UIViewController {
             self.searchController.isActive = isActive
         }).disposed(by: disposeBag)
 
+    }
+    
+    
+}
+
+extension SearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text, !text.isEmpty else {
+                return
+        }
     }
     
     

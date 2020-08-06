@@ -21,7 +21,7 @@ protocol SearchViewModelInputs {
 protocol SearchViewModelOutputs {
     var filteredHistory: Observable<[String]> { get }
     var historySubject: Observable<[String]> { get }
-    var appList: AsyncSubject<[App]> { get }
+    var appList: PublishSubject<[App]> { get }
     var searchControllerIsActiveSubject: Driver<Bool> { get }
 }
 
@@ -36,7 +36,7 @@ class SearchViewModel: SearchViewModelType, SearchViewModelInputs, SearchViewMod
         return searchControllerIsActive.asDriver(onErrorJustReturn: false)
     }
 
-    var appList = AsyncSubject<[App]>()
+    var appList = PublishSubject<[App]>()
 
     var inputs: SearchViewModelInputs { return self }
     var outputs: SearchViewModelOutputs { return self }

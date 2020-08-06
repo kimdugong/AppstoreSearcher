@@ -37,14 +37,14 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchViewCell" id="U0b-PP-m1a" customClass="SearchViewCell" customModule="AppstoreSearcher" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="93" width="414" height="42"/>
+                                        <rect key="frame" x="0.0" y="93" width="414" height="42.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U0b-PP-m1a" id="olj-T3-IaH">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="42"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="42.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Erx-rD-Ag9">
-                                                    <rect key="frame" x="20" y="11" width="374" height="20"/>
+                                                    <rect key="frame" x="20" y="11" width="374" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -82,6 +82,49 @@
             </objects>
             <point key="canvasLocation" x="1952.1739130434785" y="137.94642857142856"/>
         </scene>
+        <!--Search Result Container View Controller-->
+        <scene sceneID="yVv-sc-une">
+            <objects>
+                <viewController storyboardIdentifier="SearchResultContainerViewController" id="PCK-P1-8Xz" customClass="SearchResultContainerViewController" customModule="AppstoreSearcher" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U5f-nZ-med">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8k7-A8-WzK">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <connections>
+                                    <segue destination="EGk-AI-6mV" kind="embed" identifier="appList" id="Xfk-uB-Sgl"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sb2-kl-GMl">
+                                <rect key="frame" x="0.0" y="44" width="414" height="608"/>
+                                <connections>
+                                    <segue destination="KoN-Bg-hX6" kind="embed" identifier="history" id="q0I-e3-AR7"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Z7E-xU-ihZ" firstAttribute="bottom" secondItem="8k7-A8-WzK" secondAttribute="bottom" id="BPs-Ne-lcW"/>
+                            <constraint firstItem="Z7E-xU-ihZ" firstAttribute="trailing" secondItem="8k7-A8-WzK" secondAttribute="trailing" id="IL8-Se-rRz"/>
+                            <constraint firstItem="Z7E-xU-ihZ" firstAttribute="bottom" secondItem="Sb2-kl-GMl" secondAttribute="bottom" constant="210" id="JR5-Ra-tDC"/>
+                            <constraint firstItem="Sb2-kl-GMl" firstAttribute="leading" secondItem="Z7E-xU-ihZ" secondAttribute="leading" id="VuZ-vn-pOh"/>
+                            <constraint firstItem="8k7-A8-WzK" firstAttribute="top" secondItem="Z7E-xU-ihZ" secondAttribute="top" id="Xcf-AW-fL3"/>
+                            <constraint firstItem="8k7-A8-WzK" firstAttribute="leading" secondItem="Z7E-xU-ihZ" secondAttribute="leading" id="tr3-Y2-14P"/>
+                            <constraint firstItem="Z7E-xU-ihZ" firstAttribute="trailing" secondItem="Sb2-kl-GMl" secondAttribute="trailing" id="xbv-j2-LGI"/>
+                            <constraint firstItem="Sb2-kl-GMl" firstAttribute="top" secondItem="Z7E-xU-ihZ" secondAttribute="top" id="xyw-Tk-dof"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Z7E-xU-ihZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="appListView" destination="8k7-A8-WzK" id="YEt-U7-RVu"/>
+                        <outlet property="historyView" destination="Sb2-kl-GMl" id="RUr-Gv-sHe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="trc-Rf-6aL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2910" y="138"/>
+        </scene>
         <!--App List View Controller-->
         <scene sceneID="9ql-qj-UlP">
             <objects>
@@ -108,34 +151,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0bR-os-lmo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3766.666666666667" y="137.94642857142856"/>
+            <point key="canvasLocation" x="4059" y="-183"/>
         </scene>
-        <!--Search Results View Controller-->
+        <!--History View Controller-->
         <scene sceneID="m9T-Ma-cct">
             <objects>
-                <viewController storyboardIdentifier="SearchResultsViewController" id="KoN-Bg-hX6" customClass="SearchResultsViewController" customModule="AppstoreSearcher" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchResultsViewController" id="KoN-Bg-hX6" customClass="HistoryViewController" customModule="AppstoreSearcher" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sld-CC-VqT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="608"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k5B-tC-thz">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <connections>
-                                    <segue destination="EGk-AI-6mV" kind="embed" identifier="toAppListView" id="h5F-zR-HVl"/>
-                                </connections>
-                            </containerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wYz-aJ-QyL">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="564"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchResultViewCell" id="80x-Ra-bo6" customClass="SearchResultViewCell" customModule="AppstoreSearcher" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="80x-Ra-bo6" id="ndM-zc-2xI">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ApK-vc-aSt">
-                                                    <rect key="frame" x="16" y="11.5" width="20" height="20"/>
+                                                    <rect key="frame" x="16" y="12" width="20" height="20"/>
                                                     <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="ZoX-Y8-O0a"/>
@@ -143,7 +180,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83s-Cp-wMk">
-                                                    <rect key="frame" x="44" y="11" width="342" height="21"/>
+                                                    <rect key="frame" x="44" y="11" width="342" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -167,26 +204,21 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="k5B-tC-thz" firstAttribute="top" secondItem="84r-bZ-c65" secondAttribute="top" id="4uy-ua-ylc"/>
                             <constraint firstItem="wYz-aJ-QyL" firstAttribute="leading" secondItem="84r-bZ-c65" secondAttribute="leading" id="B6E-Hb-e9R"/>
                             <constraint firstItem="wYz-aJ-QyL" firstAttribute="bottom" secondItem="84r-bZ-c65" secondAttribute="bottom" id="FHz-Rb-hmU"/>
                             <constraint firstItem="wYz-aJ-QyL" firstAttribute="top" secondItem="84r-bZ-c65" secondAttribute="top" id="GNg-b4-LZg"/>
-                            <constraint firstItem="k5B-tC-thz" firstAttribute="leading" secondItem="84r-bZ-c65" secondAttribute="leading" id="gwx-CM-Fnv"/>
-                            <constraint firstItem="84r-bZ-c65" firstAttribute="trailing" secondItem="k5B-tC-thz" secondAttribute="trailing" id="jUs-4S-L9b"/>
-                            <constraint firstItem="84r-bZ-c65" firstAttribute="bottom" secondItem="k5B-tC-thz" secondAttribute="bottom" id="w64-QT-bMV"/>
                             <constraint firstItem="wYz-aJ-QyL" firstAttribute="trailing" secondItem="84r-bZ-c65" secondAttribute="trailing" id="z1M-Mt-ogV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="84r-bZ-c65"/>
                     </view>
                     <navigationItem key="navigationItem" id="BVr-Z9-gWu"/>
                     <connections>
-                        <outlet property="appListView" destination="k5B-tC-thz" id="O8w-Wm-zS7"/>
                         <outlet property="tableView" destination="wYz-aJ-QyL" id="ENa-jV-uya"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="omF-MH-xhN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2854" y="138"/>
+            <point key="canvasLocation" x="4058" y="477"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bFL-As-p5x">
