@@ -22,10 +22,12 @@ class SearchViewController: UIViewController {
     
     private let viewModel = SearchViewModel(history: sampleData)
     
-    private var searchController: UISearchController = {
-        let searchResultViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SearchResultsViewController")
+    private lazy var searchController: UISearchController = { [weak self] in
+        let searchResultViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SearchResultsViewController") as SearchResultsViewController
+        searchResultViewController.viewModel = self?.viewModel
         let searchController = UISearchController(searchResultsController: searchResultViewController)
         searchController.searchResultsUpdater = searchResultViewController as? UISearchResultsUpdating
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Games, Apps, and More"
         return searchController
     }()
@@ -38,35 +40,30 @@ class SearchViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         
         tableView.tableFooterView = UIView()
-        
-        tableView.rx.setDelegate(self).disposed(by: disposeBag)
-        
-        viewModel.historySubject.bind(to: tableView.rx.items(cellIdentifier: SearchViewCell.identifier, cellType: SearchViewCell.self)) { (row, history, cell) in
+        bind()
+    }
+
+    private func bind() {
+        searchController.searchBar.rx.text.orEmpty.bind(to: viewModel.inputs.searchText).disposed(by: disposeBag)
+
+        searchController.searchBar.rx.searchButtonClicked.withLatestFrom(viewModel.inputs.searchText).subscribe(onNext: { [unowned self] (query) in
+            self.viewModel.inputs.addHistory(with: query)
+            }).disposed(by: disposeBag)
+
+        tableView.rx.modelSelected(String.self).subscribe(onNext: { [unowned self] (query) in
+            self.searchController.isActive = true
+            self.searchController.searchBar.rx.text.onNext(query)
+        }).disposed(by: disposeBag)
+
+        tableView.rx.itemSelected.subscribe(onNext: { [unowned self] (indexPath) in
+            self.tableView.deselectRow(at: indexPath, animated: true)
+        }).disposed(by: disposeBag)
+
+        viewModel.outputs.historySubject.bind(to: tableView.rx.items(cellIdentifier: SearchViewCell.identifier, cellType: SearchViewCell.self)) { (row, history, cell) in
             cell.titleLabel.text = history
         }.disposed(by: disposeBag)
-        
-    }
-    
-    
-}
 
-extension SearchViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let headerLabel: UILabel = {
-//           let label = UILabel()
-//            label.text = "최근 검색어"
-//            label.font = UIFont.boldSystemFont(ofSize: 20)
-//            return label
-//        }()
-//        
-//        NSLayoutConstraint.activate([
-//            headerLabel.heightAnchor.constraint(equalToConstant: 1000)
-//        ])
-//        return headerLabel
-//        
-//    }
+    
 }
