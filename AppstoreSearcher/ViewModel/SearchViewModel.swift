@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 protocol SearchViewModelInputs {
-    var searchText: PublishRelay<String> { get }
+    var searchText: BehaviorSubject<String> { get }
     var history: BehaviorSubject<[String]> { get }
     func addHistory(with query: String)
     func requestSearch(with query: String)
@@ -31,7 +31,7 @@ protocol SearchViewModelType {
 }
 
 
-class SearchViewModel: SearchViewModelType, SearchViewModelInputs, SearchViewModelOutputs {
+struct SearchViewModel: SearchViewModelType, SearchViewModelInputs, SearchViewModelOutputs {
     var searchControllerIsActiveSubject: Driver<Bool> {
         return searchControllerIsActive.asDriver(onErrorJustReturn: false)
     }
@@ -50,13 +50,13 @@ class SearchViewModel: SearchViewModelType, SearchViewModelInputs, SearchViewMod
 
     // input
     var history: BehaviorSubject<[String]>
-    var searchText = PublishRelay<String>()
+    var searchText = BehaviorSubject<String>(value: "")
     func addHistory(with query: String) {
         debugPrint("addHistory", query)
         guard let value = try? history.value() else {
             return
         }
-        history.onNext(value + [query])
+        history.onNext([query] + value)
     }
 
     func requestSearch(with query: String) {
@@ -76,7 +76,7 @@ class SearchViewModel: SearchViewModelType, SearchViewModelInputs, SearchViewMod
         self.history = BehaviorSubject<[String]>(value: history)
         self.filteredHistory = Observable<[String]>
             .combineLatest(self.history.asObserver(), self.searchText.asObservable()) { (history, searchText) -> [String] in
-                return history.filter{ $0.lowercased().contains(searchText.lowercased()) }
+                return history.filter({ $0.prefix(searchText.count).caseInsensitiveCompare(searchText) == .orderedSame })
         }
     }
 

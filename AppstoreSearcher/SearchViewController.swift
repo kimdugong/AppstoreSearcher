@@ -17,14 +17,26 @@ class SearchViewController: UIViewController {
     static var sampleData: [String] = [
         "app1",
         "app2",
-        "app3"
+        "app3",
+        "app4",
+        "app5",
+//        "app6",
+//        "app7",
+//        "app8",
+//        "app9",
+//        "app10",
+//        "app11",
+//        "app12",
+//        "app13"
     ]
-    
+
+    private var searchType = BehaviorSubject<SearchViewType>(value: .history)
     private let viewModel = SearchViewModel(history: sampleData)
     
     private lazy var searchController: UISearchController = { [weak self] in
-        let searchResultContainerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SearchResultContainerViewController") as SearchResultContainerViewController
+        let searchResultContainerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SearchResultContainerViewController") as SearchResultsContainerViewController
         searchResultContainerViewController.viewModel = self?.viewModel
+        searchResultContainerViewController.searchType = self?.searchType
         let searchController = UISearchController(searchResultsController: searchResultContainerViewController)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -34,21 +46,18 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         navigationItem.title = "Search"
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        extendedLayoutIncludesOpaqueBars = true
         
         tableView.tableFooterView = UIView()
         bind()
-    }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toSearchResultsView" {
-            if let destination = segue.destination as? HistoryViewController {
-                destination.viewModel = viewModel
-            }
-        }
+        viewModel.searchText.subscribe(onNext: { (query) in
+            print(query)
+        }).disposed(by: disposeBag)
     }
 
     private func bind() {
@@ -56,11 +65,20 @@ class SearchViewController: UIViewController {
 
         searchController.searchBar.rx.searchButtonClicked.withLatestFrom(viewModel.inputs.searchText).subscribe(onNext: { [unowned self] (query) in
             self.viewModel.inputs.addHistory(with: query)
+            self.viewModel.inputs.requestSearch(with: query)
+            self.searchType.onNext(.appList)
+        }).disposed(by: disposeBag)
+
+        searchController.searchBar.rx.textDidBeginEditing.subscribe(onNext: { (Void) in
+
         }).disposed(by: disposeBag)
 
         tableView.rx.modelSelected(String.self).subscribe(onNext: { [unowned self] (query) in
             self.viewModel.inputs.searchControllerIsActive.onNext(true)
             self.searchController.searchBar.rx.text.onNext(query)
+            self.viewModel.searchText.onNext(query)
+            self.viewModel.inputs.requestSearch(with: query)
+            self.searchType.onNext(.appList)
         }).disposed(by: disposeBag)
 
         tableView.rx.itemSelected.subscribe(onNext: { [unowned self] (indexPath) in
@@ -74,7 +92,6 @@ class SearchViewController: UIViewController {
         viewModel.outputs.searchControllerIsActiveSubject.drive(onNext: { isActive in
             self.searchController.isActive = isActive
         }).disposed(by: disposeBag)
-
     }
     
     
@@ -83,8 +100,9 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text, !text.isEmpty else {
-                return
+            return
         }
+        searchType.onNext(.history)
     }
     
     
