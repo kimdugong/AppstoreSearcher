@@ -82,8 +82,19 @@ import Foundation
 **/
 
 struct App: Codable {
-    let screenshotUrls: [String]
+    let name: String
+    let screenshots: [String]
     let description: String
-    let artworkUrl60: String
-    let averageUserRatingForCurrentVersion: Double
+    let icon: String
+    let genre: String
+    let rating: Double
+    
+    enum CodingKeys: String, CodingKey {
+        case name = "trackName"
+        case icon = "artworkUrl60"
+        case genre = "primaryGenreName"
+        case description = "description"
+        case screenshots = "screenshotUrls"
+        case rating = "averageUserRatingForCurrentVersion"
+    }
 }

@@ -25,7 +25,7 @@ class HistoryViewCell: UITableViewCell {
     }
 
     func bind(viewModel: HistoryViewCellViewModel) {
-        viewModel.inputs.searchText.subscribeOn(MainScheduler.instance).subscribe(onNext: { [unowned self] searchText in
+        viewModel.outputs.searchTextSubject.drive(onNext: { [unowned self] searchText in
             self.titleLabel.attributedText = self.setHighlight(labelText: self.titleLabel.text, highlited: searchText)
         }).disposed(by: disposeBag)
     }

@@ -25,6 +25,11 @@
 		4252768824DD31100043ACEB /* AppListViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252768724DD31100043ACEB /* AppListViewCellViewModel.swift */; };
 		429122E624DAF4A400E5B097 /* SearchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429122E524DAF4A400E5B097 /* SearchViewCell.swift */; };
 		429122E824DC3AF500E5B097 /* SearchResultsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429122E724DC3AF500E5B097 /* SearchResultsContainerViewController.swift */; };
+		429122EB24DD6FB800E5B097 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429122EA24DD6FB800E5B097 /* NetworkManager.swift */; };
+		429122ED24DD7CA700E5B097 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429122EC24DD7CA700E5B097 /* API.swift */; };
+		429122EF24DD7F0600E5B097 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429122EE24DD7F0600E5B097 /* NetworkError.swift */; };
+		429122F124DE554D00E5B097 /* AppListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429122F024DE554D00E5B097 /* AppListViewCell.swift */; };
+		429122F424DEBA0200E5B097 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429122F324DEBA0200E5B097 /* UIView+Extension.swift */; };
 		E6D6437110BF1EDC1817684F /* Pods_AppstoreSearcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BABF69796D6140DBE4732847 /* Pods_AppstoreSearcher.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +54,11 @@
 		4252768724DD31100043ACEB /* AppListViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppListViewCellViewModel.swift; sourceTree = "<group>"; };
 		429122E524DAF4A400E5B097 /* SearchViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewCell.swift; sourceTree = "<group>"; };
 		429122E724DC3AF500E5B097 /* SearchResultsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsContainerViewController.swift; sourceTree = "<group>"; };
+		429122EA24DD6FB800E5B097 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		429122EC24DD7CA700E5B097 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		429122EE24DD7F0600E5B097 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		429122F024DE554D00E5B097 /* AppListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppListViewCell.swift; sourceTree = "<group>"; };
+		429122F324DEBA0200E5B097 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		9732A6938823769425A9AD71 /* Pods-AppstoreSearcher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppstoreSearcher.release.xcconfig"; path = "Target Support Files/Pods-AppstoreSearcher/Pods-AppstoreSearcher.release.xcconfig"; sourceTree = "<group>"; };
 		BABF69796D6140DBE4732847 /* Pods_AppstoreSearcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppstoreSearcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE8064706BC6DA5638D0891 /* Pods-AppstoreSearcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppstoreSearcher.debug.xcconfig"; path = "Target Support Files/Pods-AppstoreSearcher/Pods-AppstoreSearcher.debug.xcconfig"; sourceTree = "<group>"; };
@@ -87,6 +97,8 @@
 		42426B5324DA462300DFB7E3 /* AppstoreSearcher */ = {
 			isa = PBXGroup;
 			children = (
+				429122F224DEB9EA00E5B097 /* Extension */,
+				429122E924DD6F9E00E5B097 /* Manager */,
 				4252767C24DBDE610043ACEB /* Model */,
 				42426B6D24DA8ADF00DFB7E3 /* ViewModel */,
 				42426B6C24DA8AB100DFB7E3 /* SupportFile */,
@@ -97,6 +109,7 @@
 				42426B5A24DA462300DFB7E3 /* Main.storyboard */,
 				42426B6A24DA6ECB00DFB7E3 /* HistoryViewCell.swift */,
 				429122E524DAF4A400E5B097 /* SearchViewCell.swift */,
+				429122F024DE554D00E5B097 /* AppListViewCell.swift */,
 			);
 			path = AppstoreSearcher;
 			sourceTree = "<group>";
@@ -130,8 +143,26 @@
 				4252767D24DBDEB00043ACEB /* App.swift */,
 				4252767F24DBDF010043ACEB /* Response.swift */,
 				4252768324DCE5DF0043ACEB /* SearchViewType.swift */,
+				429122EE24DD7F0600E5B097 /* NetworkError.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		429122E924DD6F9E00E5B097 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				429122EA24DD6FB800E5B097 /* NetworkManager.swift */,
+				429122EC24DD7CA700E5B097 /* API.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		429122F224DEB9EA00E5B097 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				429122F324DEBA0200E5B097 /* UIView+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		B02BF8883FCB011F8F059540 /* Frameworks */ = {
@@ -268,8 +299,10 @@
 			files = (
 				429122E824DC3AF500E5B097 /* SearchResultsContainerViewController.swift in Sources */,
 				4252767E24DBDEB00043ACEB /* App.swift in Sources */,
+				429122F124DE554D00E5B097 /* AppListViewCell.swift in Sources */,
 				429122E624DAF4A400E5B097 /* SearchViewCell.swift in Sources */,
 				42426B5924DA462300DFB7E3 /* SearchViewController.swift in Sources */,
+				429122EB24DD6FB800E5B097 /* NetworkManager.swift in Sources */,
 				4252767B24DBB2F40043ACEB /* AppListViewController.swift in Sources */,
 				4252768624DD03BA0043ACEB /* HistoryViewCellViewModel.swift in Sources */,
 				4252768024DBDF010043ACEB /* Response.swift in Sources */,
@@ -280,6 +313,9 @@
 				42426B5524DA462300DFB7E3 /* AppDelegate.swift in Sources */,
 				42426B5724DA462300DFB7E3 /* SceneDelegate.swift in Sources */,
 				4252768424DCE5DF0043ACEB /* SearchViewType.swift in Sources */,
+				429122EF24DD7F0600E5B097 /* NetworkError.swift in Sources */,
+				429122ED24DD7CA700E5B097 /* API.swift in Sources */,
+				429122F424DEBA0200E5B097 /* UIView+Extension.swift in Sources */,
 				4252768824DD31100043ACEB /* AppListViewCellViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

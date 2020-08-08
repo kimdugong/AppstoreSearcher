@@ -15,7 +15,7 @@ class SearchViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     static var sampleData: [String] = [
-        "app1",
+        "카카오",
         "app2",
         "app3",
         "app4",
@@ -41,6 +41,7 @@ class SearchViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Games, Apps, and More"
+        searchController.searchBar.autocapitalizationType = .none
         return searchController
         }()
     
