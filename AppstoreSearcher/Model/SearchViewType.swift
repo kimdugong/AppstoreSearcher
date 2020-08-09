@@ -9,6 +9,7 @@
 import Foundation
 
 enum SearchViewType {
-    case history
-    case appList
+    case home
+    case search
+    case appList(query: String)
 }

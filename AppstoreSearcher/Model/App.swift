@@ -86,15 +86,27 @@ struct App: Codable {
     let screenshots: [String]
     let description: String
     let icon: String
+    let iconLarge: String
     let genre: String
     let rating: Double
+    let ratingCount: Int
+    let sellerName: String
+    let version: String
+    let releaseNotes: String
+    let grade: String
     
     enum CodingKeys: String, CodingKey {
         case name = "trackName"
         case icon = "artworkUrl60"
+        case iconLarge = "artworkUrl100"
         case genre = "primaryGenreName"
         case description = "description"
         case screenshots = "screenshotUrls"
         case rating = "averageUserRatingForCurrentVersion"
+        case ratingCount = "userRatingCountForCurrentVersion"
+        case sellerName = "sellerName"
+        case version = "version"
+        case releaseNotes = "releaseNotes"
+        case grade = "contentAdvisoryRating"
     }
 }

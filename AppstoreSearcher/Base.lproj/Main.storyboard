@@ -82,59 +82,16 @@
             </objects>
             <point key="canvasLocation" x="1952.1739130434785" y="137.94642857142856"/>
         </scene>
-        <!--Search Results Container View Controller-->
-        <scene sceneID="yVv-sc-une">
-            <objects>
-                <viewController storyboardIdentifier="SearchResultContainerViewController" id="PCK-P1-8Xz" customClass="SearchResultsContainerViewController" customModule="AppstoreSearcher" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="U5f-nZ-med">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8k7-A8-WzK">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <connections>
-                                    <segue destination="EGk-AI-6mV" kind="embed" identifier="appList" id="Xfk-uB-Sgl"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sb2-kl-GMl">
-                                <rect key="frame" x="0.0" y="44" width="414" height="608"/>
-                                <connections>
-                                    <segue destination="KoN-Bg-hX6" kind="embed" identifier="history" id="q0I-e3-AR7"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="Z7E-xU-ihZ" firstAttribute="bottom" secondItem="8k7-A8-WzK" secondAttribute="bottom" id="BPs-Ne-lcW"/>
-                            <constraint firstItem="Z7E-xU-ihZ" firstAttribute="trailing" secondItem="8k7-A8-WzK" secondAttribute="trailing" id="IL8-Se-rRz"/>
-                            <constraint firstItem="Z7E-xU-ihZ" firstAttribute="bottom" secondItem="Sb2-kl-GMl" secondAttribute="bottom" constant="210" id="JR5-Ra-tDC"/>
-                            <constraint firstItem="Sb2-kl-GMl" firstAttribute="leading" secondItem="Z7E-xU-ihZ" secondAttribute="leading" id="VuZ-vn-pOh"/>
-                            <constraint firstItem="8k7-A8-WzK" firstAttribute="top" secondItem="Z7E-xU-ihZ" secondAttribute="top" id="Xcf-AW-fL3"/>
-                            <constraint firstItem="8k7-A8-WzK" firstAttribute="leading" secondItem="Z7E-xU-ihZ" secondAttribute="leading" id="tr3-Y2-14P"/>
-                            <constraint firstItem="Z7E-xU-ihZ" firstAttribute="trailing" secondItem="Sb2-kl-GMl" secondAttribute="trailing" id="xbv-j2-LGI"/>
-                            <constraint firstItem="Sb2-kl-GMl" firstAttribute="top" secondItem="Z7E-xU-ihZ" secondAttribute="top" id="xyw-Tk-dof"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Z7E-xU-ihZ"/>
-                    </view>
-                    <connections>
-                        <outlet property="appListView" destination="8k7-A8-WzK" id="YEt-U7-RVu"/>
-                        <outlet property="historyView" destination="Sb2-kl-GMl" id="RUr-Gv-sHe"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="trc-Rf-6aL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2910" y="138"/>
-        </scene>
         <!--App List View Controller-->
         <scene sceneID="9ql-qj-UlP">
             <objects>
                 <viewController storyboardIdentifier="AppListViewController" id="EGk-AI-6mV" customClass="AppListViewController" customModule="AppstoreSearcher" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2NL-QC-vGq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zHx-qv-hMh">
-                                <rect key="frame" x="0.0" y="44" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AppListViewCell" id="JfY-ty-gl3" customClass="AppListViewCell" customModule="AppstoreSearcher" customModuleProvider="target">
@@ -224,15 +181,52 @@
                                                         </imageView>
                                                     </subviews>
                                                 </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGr-Zf-gXn">
+                                                    <rect key="frame" x="164" y="61" width="161" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uFP-Mk-0eO" customClass="CosmosView" customModule="Cosmos">
+                                                    <rect key="frame" x="96" y="63" width="60" height="12"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="Ewg-Mb-RsR"/>
+                                                        <constraint firstAttribute="height" constant="12" id="MHs-Qa-15P"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                                            <real key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
+                                                            <color key="value" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
+                                                            <color key="value" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="filledBorderColor">
+                                                            <color key="value" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="starMargin">
+                                                            <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="NO"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="nNl-t7-4yc" firstAttribute="trailing" secondItem="3X9-rK-AJM" secondAttribute="trailing" id="0Y2-No-PXc"/>
+                                                <constraint firstItem="zGr-Zf-gXn" firstAttribute="trailing" secondItem="nNl-t7-4yc" secondAttribute="trailing" id="1J0-5A-B5x"/>
+                                                <constraint firstItem="zGr-Zf-gXn" firstAttribute="centerY" secondItem="uFP-Mk-0eO" secondAttribute="centerY" id="2D9-8L-vjl"/>
                                                 <constraint firstItem="dSb-Is-kcn" firstAttribute="leading" secondItem="uDx-mC-gqH" secondAttribute="leadingMargin" constant="8" id="BP6-Ua-XZ0"/>
+                                                <constraint firstItem="zGr-Zf-gXn" firstAttribute="leading" secondItem="uFP-Mk-0eO" secondAttribute="trailing" constant="8" id="E7L-vP-X1U"/>
                                                 <constraint firstAttribute="trailing" secondItem="NhT-1I-5w2" secondAttribute="trailing" constant="16" id="JdH-9x-3Gu"/>
+                                                <constraint firstItem="uFP-Mk-0eO" firstAttribute="bottom" secondItem="dSb-Is-kcn" secondAttribute="bottom" constant="-4" id="Kuu-8z-5xz"/>
                                                 <constraint firstItem="7kV-6F-gyw" firstAttribute="top" secondItem="dSb-Is-kcn" secondAttribute="bottom" constant="16" id="Lk5-EM-aVN"/>
                                                 <constraint firstItem="NhT-1I-5w2" firstAttribute="leading" secondItem="3X9-rK-AJM" secondAttribute="trailing" constant="8" id="Xgy-f9-ZXw"/>
                                                 <constraint firstItem="nNl-t7-4yc" firstAttribute="leading" secondItem="3X9-rK-AJM" secondAttribute="leading" id="eGO-Hd-cNh"/>
                                                 <constraint firstItem="nNl-t7-4yc" firstAttribute="top" secondItem="3X9-rK-AJM" secondAttribute="bottom" id="eTg-JA-hNu"/>
+                                                <constraint firstItem="uFP-Mk-0eO" firstAttribute="leading" secondItem="nNl-t7-4yc" secondAttribute="leading" id="eaK-GF-dDQ"/>
                                                 <constraint firstItem="NhT-1I-5w2" firstAttribute="centerY" secondItem="dSb-Is-kcn" secondAttribute="centerY" id="jm9-Qd-A1n"/>
                                                 <constraint firstItem="dSb-Is-kcn" firstAttribute="top" secondItem="uDx-mC-gqH" secondAttribute="topMargin" constant="8" id="kID-Z3-wTj"/>
                                                 <constraint firstAttribute="bottom" secondItem="7kV-6F-gyw" secondAttribute="bottom" constant="16" id="l8I-md-liK"/>
@@ -245,6 +239,8 @@
                                             <outlet property="appIconImageView" destination="dSb-Is-kcn" id="rsS-EM-691"/>
                                             <outlet property="genreLabel" destination="nNl-t7-4yc" id="j5r-ai-oq8"/>
                                             <outlet property="nameLable" destination="3X9-rK-AJM" id="Sgx-PF-xKd"/>
+                                            <outlet property="ratingCountLabel" destination="zGr-Zf-gXn" id="fM4-Bb-XjV"/>
+                                            <outlet property="ratingStar" destination="uFP-Mk-0eO" id="ObD-Rj-gmu"/>
                                             <outlet property="screenShotImageView1" destination="quZ-E2-ieL" id="rUm-6E-DzR"/>
                                             <outlet property="screenShotImageView2" destination="Bom-b5-qFK" id="ML5-oh-F4T"/>
                                             <outlet property="screenShotImageView3" destination="1pn-9u-ZAs" id="G69-Fd-DnV"/>
@@ -265,22 +261,55 @@
                     <navigationItem key="navigationItem" id="y2v-Lv-Qtd"/>
                     <connections>
                         <outlet property="tableView" destination="zHx-qv-hMh" id="ab6-7C-wQc"/>
+                        <segue destination="e5b-kR-W6p" kind="show" identifier="appDetail" id="kiw-bU-icP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0bR-os-lmo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4057.971014492754" y="-183.48214285714286"/>
+            <point key="canvasLocation" x="2830" y="138"/>
+        </scene>
+        <!--App Detail View Controller-->
+        <scene sceneID="ca5-lb-S17">
+            <objects>
+                <viewController id="e5b-kR-W6p" customClass="AppDetailViewController" customModule="AppstoreSearcher" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UMC-mA-heU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sbk-hj-ltu">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="8Hr-WA-oIZ" firstAttribute="bottom" secondItem="sbk-hj-ltu" secondAttribute="bottom" id="WM7-vE-uZd"/>
+                            <constraint firstItem="sbk-hj-ltu" firstAttribute="top" secondItem="8Hr-WA-oIZ" secondAttribute="top" id="fFI-3Z-KJ7"/>
+                            <constraint firstItem="sbk-hj-ltu" firstAttribute="leading" secondItem="8Hr-WA-oIZ" secondAttribute="leading" id="gHr-A7-Un9"/>
+                            <constraint firstItem="8Hr-WA-oIZ" firstAttribute="trailing" secondItem="sbk-hj-ltu" secondAttribute="trailing" id="z4X-6I-bUf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8Hr-WA-oIZ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="HaM-pC-3kf"/>
+                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="sbk-hj-ltu" id="DU6-SC-TcV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="goK-E2-vk5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3621.739130434783" y="137.94642857142856"/>
         </scene>
         <!--History View Controller-->
         <scene sceneID="m9T-Ma-cct">
             <objects>
-                <viewController storyboardIdentifier="SearchResultsViewController" id="KoN-Bg-hX6" customClass="HistoryViewController" customModule="AppstoreSearcher" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HistoryViewController" id="KoN-Bg-hX6" customClass="HistoryViewController" customModule="AppstoreSearcher" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sld-CC-VqT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="608"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wYz-aJ-QyL">
-                                <rect key="frame" x="0.0" y="44" width="414" height="564"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HistoryViewCell" id="80x-Ra-bo6" customClass="HistoryViewCell" customModule="AppstoreSearcher" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43"/>
@@ -336,7 +365,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="omF-MH-xhN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4058" y="477"/>
+            <point key="canvasLocation" x="1952" y="860"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bFL-As-p5x">

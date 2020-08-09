@@ -63,9 +63,6 @@ struct SearchViewModel: SearchViewModelType, SearchViewModelInputs, SearchViewMo
 
     func requestSearch(with query: String) {
         print("requestSearch", query)
-//        self.appList.onCompleted()
-//        appList.bind(to: API.search(query: query))
-//        API.search(query: query).bind(to: appList).disposed(by: disposeBag)
         API.search(query: query).subscribe(onNext: { (newAppList) in
             self.appList.onNext(newAppList)
         }).disposed(by: disposeBag)

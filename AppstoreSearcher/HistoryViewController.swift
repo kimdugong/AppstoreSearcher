@@ -33,8 +33,8 @@ class HistoryViewController: UIViewController {
 
         tableView.rx.modelSelected(String.self).subscribe(onNext: { [unowned self] (query) in
             debugPrint("modelSelected", query)
+            self.searchType.onNext(.appList(query: query))
             self.viewModel.inputs.requestSearch(with: query)
-            self.searchType.onNext(.appList)
         }).disposed(by: disposeBag)
 
         viewModel.outputs.filteredHistory.asObservable().bind(to: tableView.rx.items(cellIdentifier: HistoryViewCell.identifier, cellType: HistoryViewCell.self)){ [unowned self] (row, history, cell) in
@@ -43,5 +43,14 @@ class HistoryViewController: UIViewController {
             cell.bind(viewModel: viewModel)
         }.disposed(by: disposeBag)
 
+    }
+}
+
+extension HistoryViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text, !text.isEmpty else {
+            return
+        }
+        searchType.onNext(.search)
     }
 }

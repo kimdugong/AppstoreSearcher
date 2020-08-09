@@ -8,15 +8,18 @@
 
 import UIKit
 import RxSwift
+import Cosmos
 
 class AppListViewCell: UITableViewCell {
 
     @IBOutlet weak var appIconImageView: UIImageView!
     @IBOutlet weak var nameLable: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var ratingCountLabel: UILabel!
     @IBOutlet weak var screenShotImageView1: UIImageView!
     @IBOutlet weak var screenShotImageView2: UIImageView!
     @IBOutlet weak var screenShotImageView3: UIImageView!
+    @IBOutlet weak var ratingStar: CosmosView!
     
     var viewModel: AppListViewCellViewModel?
     
@@ -33,6 +36,8 @@ class AppListViewCell: UITableViewCell {
         viewModel.outputs.appSubject.subscribe(onNext: {[unowned self] app in
             self.nameLable.text = app.name
             self.genreLabel.text = app.genre
+            self.ratingStar.rating = app.rating
+            self.ratingCountLabel.text = String(app.ratingCount)
         }).disposed(by: disposeBag)
         
         viewModel.outputs.iconImage.bind(to: appIconImageView.rx.image).disposed(by: disposeBag)

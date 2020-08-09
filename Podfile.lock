@@ -1,4 +1,8 @@
 PODS:
+  - Cosmos (22.1.0)
+  - Kingfisher (5.13.2):
+    - Kingfisher/Core (= 5.13.2)
+  - Kingfisher/Core (5.13.2)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -7,20 +11,26 @@ PODS:
   - RxSwift (5.1.1)
 
 DEPENDENCIES:
+  - Cosmos (~> 22.1)
+  - Kingfisher (~> 5.0)
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
 
 SPEC REPOS:
   trunk:
+    - Cosmos
+    - Kingfisher
     - RxCocoa
     - RxRelay
     - RxSwift
 
 SPEC CHECKSUMS:
+  Cosmos: 2795b36ad4bbea1af3050d6d65576ed63875f86a
+  Kingfisher: d342c8354c10c3d85a27d6d4c42c41285924b898
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
 
-PODFILE CHECKSUM: 73210980f1737dd0411d7ec6bfb8dd037bd97ae6
+PODFILE CHECKSUM: 12943059c0166b1cbb5a4141cb1b6984d7cc309e
 
 COCOAPODS: 1.9.0.beta.2

@@ -30,23 +30,49 @@ class SearchResultsContainerViewController: UIViewController {
             vc.viewModel = viewModel
             vc.searchType = searchType
         }
+        
         if segue.identifier == "appList", let vc = segue.destination as? AppListViewController {
             vc.viewModel = viewModel
             vc.searchType = searchType
         }
+        
+        if segue.identifier == "appDetail", let vc = segue.destination as? AppDetailViewController {
+            guard let app = sender as? App else {
+                return
+            }
+            vc.app = app
+        }
     }
 
     private func bind() {
-        searchType.subscribe(onNext: { [unowned self] in
-            switch $0 {
-            case .appList:
-                self.view.bringSubviewToFront(self.appListView)
-                break
-            case .history:
-                self.view.bringSubviewToFront(self.historyView)
-                break
-            }
-        }).disposed(by: disposeBag)
+//        searchType.subscribeOn(MainScheduler.instance).subscribe(onNext: { [unowned self] in
+//            switch $0 {
+//            case .appList:
+////                self.view.bringSubviewToFront(self.appListView)
+//                self.view.addSubview(self.appListView)
+//                self.view.bringSubviewToFront(self.appListView)
+//                break
+//            case .history:
+//                self.appListView.removeFromSuperview()
+////                self.view.bringSubviewToFront(self.historyView)
+//                break
+//            }
+//        }).disposed(by: disposeBag)
     }
+    
+//    override func viewDidLayoutSubviews() {
+//        self.appListView.frame = CGRect(origin: .zero, size: self.view.bounds.size)
+//    }
 
+}
+
+extension SearchResultsContainerViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+//        guard let text = searchController.searchBar.text, !text.isEmpty else {
+//            return
+//        }
+//        searchType.onNext(.search)
+    }
+    
+    
 }
