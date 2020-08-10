@@ -62,7 +62,6 @@ class SearchViewController: UIViewController {
     }
     
     private func transition(searchType: SearchViewType) {
-        
         switch searchType {
         case .appList(let query):
             //                self.navigationController?.pushViewController(appListVC, animated: false)
@@ -103,6 +102,15 @@ class SearchViewController: UIViewController {
         searchController.searchBar.rx.textDidBeginEditing.subscribe(onNext: { (Void) in
         
         }).disposed(by: disposeBag)
+
+        Observable.combineLatest(viewModel.inputs.searchText.asObserver(), searchController.searchBar.rx.textDidBeginEditing.asObservable()){ (query, _) -> SearchViewType  in
+            print(query)
+            if !query.isEmpty {
+//                return .appList(query: query)
+                return .search
+            }
+            return .home
+            }.bind(to: searchType).disposed(by: disposeBag)
         
         searchController.searchBar.rx.cancelButtonClicked.subscribeOn(MainScheduler.instance).subscribe(onNext: { [unowned self] _ in
             self.searchType.onNext(.home)

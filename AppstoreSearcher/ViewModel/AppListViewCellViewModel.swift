@@ -44,22 +44,13 @@ struct AppListViewCellViewModel: AppListViewCellViewModelType, AppListViewCellVi
     
     init(app: App) {
         self.app = BehaviorSubject<App>(value: app)
-        self.iconImage = self.app.compactMap { (app) -> URL? in
-            if let url = URL(string: app.icon) {
-                return url
-            }
-            return nil
-        }.asObservable()
-        self.screenShotImages = self.app.subscribeOn(ConcurrentDispatchQueueScheduler(qos: .utility)).compactMap{ app -> [URL]? in
-            let imagesArray: [URL] = app.screenshots.compactMap {
-                if let url = URL(string: $0) {
-                    return url
-                }
-                return nil
-            }
-            return imagesArray.count < 3 ? imagesArray : Array(imagesArray.prefix(upTo: 3))
-        }
-        .asObservable()
+        self.iconImage = self.app
+            .compactMap { URL(string: $0.iconLarge) ?? nil }
+            .asObservable()
+        
+        self.screenShotImages = self.app.observeOn(MainScheduler.instance)
+            .map{ $0.screenshots.compactMap{ URL(string: $0) ?? nil } }
+            .asObservable()
     }
     
 }

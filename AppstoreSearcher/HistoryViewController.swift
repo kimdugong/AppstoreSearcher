@@ -51,6 +51,6 @@ extension HistoryViewController: UISearchResultsUpdating {
         guard let text = searchController.searchBar.text, !text.isEmpty else {
             return
         }
-        searchType.onNext(.search)
+//        searchType.onNext(.search)
     }
 }
