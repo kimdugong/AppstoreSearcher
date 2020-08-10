@@ -17,8 +17,8 @@ protocol AppListViewCellViewModelInputs {
 
 protocol AppListViewCellViewModelOutputs {
     var appSubject: Observable<App> { get }
-    var iconImage: Observable<UIImage> { get }
-    var screenShotImages: Observable<[UIImage]> { get }
+    var iconImage: Observable<URL> { get }
+    var screenShotImages: Observable<[URL]> { get }
 }
 
 protocol AppListViewCellViewModelType {
@@ -35,8 +35,8 @@ struct AppListViewCellViewModel: AppListViewCellViewModelType, AppListViewCellVi
     var appSubject: Observable<App> {
         return app.asObserver()
     }
-    var iconImage: Observable<UIImage>
-    var screenShotImages: Observable<[UIImage]>
+    var iconImage: Observable<URL>
+    var screenShotImages: Observable<[URL]>
     
     // input
     var app: BehaviorSubject<App>
@@ -44,23 +44,16 @@ struct AppListViewCellViewModel: AppListViewCellViewModelType, AppListViewCellVi
     
     init(app: App) {
         self.app = BehaviorSubject<App>(value: app)
-        self.iconImage = self.app.compactMap { (app) -> UIImage? in
-            if let url = URL(string: app.icon), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
-                return image
+        self.iconImage = self.app.compactMap { (app) -> URL? in
+            if let url = URL(string: app.icon) {
+                return url
             }
             return nil
         }.asObservable()
-        self.screenShotImages = self.app.observeOn(MainScheduler.instance).compactMap{ app -> [UIImage]? in
-            //            print(app.screenshots)
-            //            return Array(app.screenshots.compactMap {
-            //                if let url = URL(string: $0), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
-            //                    return image
-            //                }
-            //                return nil
-            //            }.prefix(upTo: 3))
-            let imagesArray: [UIImage] = app.screenshots.compactMap {
-                if let url = URL(string: $0), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
-                    return image
+        self.screenShotImages = self.app.subscribeOn(ConcurrentDispatchQueueScheduler(qos: .utility)).compactMap{ app -> [URL]? in
+            let imagesArray: [URL] = app.screenshots.compactMap {
+                if let url = URL(string: $0) {
+                    return url
                 }
                 return nil
             }

@@ -43,7 +43,7 @@ class HeaderViewCell: UITableViewCell {
             self.gradeLabel.text = app.grade
         }).disposed(by: disposeBag)
         viewModel.outputs.iconImage.subscribe(onNext: { [unowned self] icon in
-            self.iconImageView.image = icon
+            self.iconImageView.kf.setImage(with: icon)
         }).disposed(by: disposeBag)
     }
 }

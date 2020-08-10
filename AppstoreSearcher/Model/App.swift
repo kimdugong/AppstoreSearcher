@@ -92,7 +92,7 @@ struct App: Codable {
     let ratingCount: Int
     let sellerName: String
     let version: String
-    let releaseNotes: String
+    let releaseNotes: String?
     let grade: String
     
     enum CodingKeys: String, CodingKey {

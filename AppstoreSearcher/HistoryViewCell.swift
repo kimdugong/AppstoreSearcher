@@ -33,7 +33,7 @@ class HistoryViewCell: UITableViewCell {
     private func setHighlight(labelText: String?, highlited: String) -> NSMutableAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 21),
-            .foregroundColor: UIColor.lightGray
+            .foregroundColor: UIColor.secondaryLabel
         ]
 
         let attributedString = NSAttributedString(
@@ -47,7 +47,7 @@ class HistoryViewCell: UITableViewCell {
 
         mutableAttributedString.addAttribute(
             NSAttributedString.Key.foregroundColor,
-            value: UIColor.black,
+            value: UIColor.label,
             range: mutableAttributedString.mutableString.range(of: highlited.lowercased()))
         return mutableAttributedString
     }

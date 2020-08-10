@@ -29,7 +29,7 @@ class ScreenShotViewCell: UITableViewCell {
         screenShotCollectionView.decelerationRate = .fast
         
         viewModel.outputs.screenShotImages.bind(to: screenShotCollectionView.rx.items(cellIdentifier: ScreenShotCollectionViewCell.identifier, cellType: ScreenShotCollectionViewCell.self)) {(row, screenshot, item) in
-            item.screenShotImageView.image = screenshot
+            item.screenShotImageView.kf.setImage(with: screenshot)
         }.disposed(by: disposeBag)
     }
 }

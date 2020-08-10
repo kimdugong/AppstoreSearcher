@@ -30,7 +30,6 @@ class AppListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         bind()
     }
     
@@ -42,7 +41,7 @@ class AppListViewController: UIViewController {
         viewModel.outputs.appList.asObserver().bind(to: tableView.rx.items(cellIdentifier: AppListViewCell.identifier, cellType: AppListViewCell.self)){ (row, app, cell) in
             cell.bind(viewModel: AppListViewCellViewModel(app: app))
         }.disposed(by: disposeBag)
-        
+
         tableView.rx.modelSelected(App.self).subscribe(onNext: { [unowned self](app) in
             self.performSegue(withIdentifier: "appDetail", sender: app)
         }).disposed(by: disposeBag)
@@ -53,4 +52,3 @@ class AppListViewController: UIViewController {
         
     }
 }
-

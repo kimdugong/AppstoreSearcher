@@ -17,8 +17,8 @@ protocol AppDetailViewCellViewModelInputs {
 
 protocol AppDeatailViewCellViewModelOutputs {
     var appSubject: Observable<App> { get }
-    var iconImage: Observable<UIImage> { get }
-    var screenShotImages: Observable<[UIImage]> { get }
+    var iconImage: Observable<URL> { get }
+    var screenShotImages: Observable<[URL]> { get }
 }
 
 protocol AppDetailViewCellViewModelType {
@@ -35,8 +35,8 @@ struct AppDetailViewCellViewModel: AppDetailViewCellViewModelType, AppDetailView
     var appSubject: Observable<App> {
         return app.asObserver()
     }
-    var iconImage: Observable<UIImage>
-    var screenShotImages: Observable<[UIImage]>
+    var iconImage: Observable<URL>
+    var screenShotImages: Observable<[URL]>
     
     // input
     var app: BehaviorSubject<App>
@@ -44,17 +44,17 @@ struct AppDetailViewCellViewModel: AppDetailViewCellViewModelType, AppDetailView
     
     init(app: App) {
         self.app = BehaviorSubject<App>(value: app)
-        self.iconImage = self.app.compactMap { (app) -> UIImage? in
-            if let url = URL(string: app.iconLarge), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
-                return image
+        self.iconImage = self.app.compactMap { (app) -> URL? in
+            if let url = URL(string: app.iconLarge) {
+                return url
             }
             return nil
         }.asObservable()
         
-        self.screenShotImages = self.app.observeOn(MainScheduler.instance).compactMap{ app -> [UIImage]? in
+        self.screenShotImages = self.app.observeOn(MainScheduler.instance).compactMap{ app -> [URL]? in
             return app.screenshots.compactMap {
-                if let url = URL(string: $0), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
-                    return image
+                if let url = URL(string: $0) {
+                    return url
                 }
                 return nil
             }

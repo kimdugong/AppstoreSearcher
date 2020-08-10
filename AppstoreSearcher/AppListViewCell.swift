@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import Cosmos
+import Kingfisher
 
 class AppListViewCell: UITableViewCell {
 
@@ -40,10 +41,12 @@ class AppListViewCell: UITableViewCell {
             self.ratingCountLabel.text = String(app.ratingCount)
         }).disposed(by: disposeBag)
         
-        viewModel.outputs.iconImage.bind(to: appIconImageView.rx.image).disposed(by: disposeBag)
-        viewModel.outputs.screenShotImages.subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background)).subscribe(onNext: { [unowned self] images in
+        viewModel.outputs.iconImage.subscribe(onNext: { [unowned self] iconImage in
+            self.appIconImageView.kf.setImage(with: iconImage)
+        }).disposed(by: disposeBag)
+        viewModel.outputs.screenShotImages.observeOn(MainScheduler.instance).subscribe(onNext: { [unowned self] images in
             zip([self.screenShotImageView1, self.screenShotImageView2, self.screenShotImageView3], images).forEach{
-                $0.0?.image = $0.1
+                $0.0?.kf.setImage(with: $0.1)
             }
         }).disposed(by: disposeBag)
     }
