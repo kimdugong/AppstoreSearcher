@@ -35,15 +35,12 @@ class AppDetailViewController: UIViewController {
     }
     
     private func bind() {
-//        viewModel.outputs.appSubject.bind(to: tableView.rx.items){ (tableView, row, app) -> UITableViewCell in
-//            return UITableViewCell()
-//        }
         viewModel.outputs.appSubject.map{ [$0, $0, $0] }.bind(to: tableView.rx.items) { [unowned self](tv, row, app) in
             if row == 0 {
                 guard let cell = tv.dequeueReusableCell(withIdentifier: "Header", for: IndexPath(row: row, section: 0)) as? HeaderViewCell else {
                     return UITableViewCell()
                 }
-                cell.bind(viewModel: self.viewModel)
+                cell.configuration(viewModel: self.viewModel)
                 return cell
             }
             
@@ -51,8 +48,7 @@ class AppDetailViewController: UIViewController {
                 guard let cell = tv.dequeueReusableCell(withIdentifier: "Content", for: IndexPath(row: row, section: 0)) as? ContentViewCell else {
                     return UITableViewCell()
                 }
-                
-                cell.whatsNewLabel.text = ";alsdfj;aoisdfja;oidsfj;adfsja;ldksfja;lkdfa;ldsfkja;lkdjfa;ldskfj;alksdfjal;dksfjla;kdsfjl;akdsjf;laksdfj ;akldfj;aldkfs;alkdsfj;aldksfja;sdflkjads;lkfja;lsdkfj"
+                cell.configuration(viewModel: self.viewModel)
                 return cell
             }
             
@@ -60,13 +56,20 @@ class AppDetailViewController: UIViewController {
                 guard let cell = tv.dequeueReusableCell(withIdentifier: "ScreenShot") as? ScreenShotViewCell else {
                     return UITableViewCell()
                 }
-                cell.bind(viewModel: self.viewModel)
+                cell.configuration(viewModel: self.viewModel)
                 return cell
             }
             
             return UITableViewCell()
         }.disposed(by: disposeBag)
-        
+
+        viewModel.outputs.isMoreInfoSubject.filter{ $0 }.drive(onNext: { isMoreInfo in
+//            self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
+            UIView.setAnimationsEnabled(false)
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+            UIView.setAnimationsEnabled(true)
+        }).disposed(by: disposeBag)
     }
     
 

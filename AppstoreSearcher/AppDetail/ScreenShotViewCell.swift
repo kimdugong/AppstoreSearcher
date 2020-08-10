@@ -24,6 +24,11 @@ class ScreenShotViewCell: UITableViewCell {
         disposeBag = DisposeBag()
     }
 
+    func configuration(viewModel: AppDetailViewCellViewModel) {
+        self.selectionStyle = .none
+        bind(viewModel: viewModel)
+    }
+
     func bind(viewModel: AppDetailViewCellViewModel) {
         screenShotCollectionView.register(ScreenShotCollectionViewCell.self, forCellWithReuseIdentifier: ScreenShotCollectionViewCell.identifier)
         screenShotCollectionView.decelerationRate = .fast

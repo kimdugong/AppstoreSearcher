@@ -20,6 +20,15 @@ class DesignableLabel: UILabel {
 }
 
 extension UIView {
+    func setLinearGradient(leftColor: UIColor, rightColor: UIColor, startPoint: CGPoint, endPoint: CGPoint) {
+        let gradient = CAGradientLayer()
+        gradient.frame = self.bounds
+        gradient.colors = [leftColor.cgColor, rightColor.cgColor]
+        gradient.startPoint = startPoint
+        gradient.endPoint = endPoint
+        layer.insertSublayer(gradient, at: 0)
+    }
+
     @IBInspectable
     var cornerRadius: CGFloat {
         get {

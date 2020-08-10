@@ -18,6 +18,10 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새로운 기능" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhE-9V-qyb">
                         <rect key="frame" x="16" y="16" width="91" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="91" id="5si-CC-cPV"/>
+                            <constraint firstAttribute="height" constant="24" id="NDG-ix-Pak"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -28,6 +32,10 @@
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="버전 1.8" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdW-9Q-2Q4">
                         <rect key="frame" x="16" y="48" width="43.5" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="43.5" id="y94-7e-H4S"/>
+                            <constraint firstAttribute="height" constant="16" id="yF9-Im-q3l"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -38,11 +46,8 @@
                         <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGY-Ng-EiZ">
-                        <rect key="frame" x="16" y="72" width="288" height="51"/>
-                        <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="55" id="eHd-SM-mLN"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="clip" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGY-Ng-EiZ">
+                        <rect key="frame" x="16" y="72" width="288" height="55"/>
                         <string key="text">Label
 Label2
 Label3</string>
@@ -50,8 +55,12 @@ Label3</string>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyP-yA-chN">
-                        <rect key="frame" x="282" y="97" width="30" height="26"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyP-yA-chN">
+                        <rect key="frame" x="242" y="111" width="70" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="NQ6-yo-6s6"/>
+                            <constraint firstAttribute="height" constant="16" id="cer-fT-tcE"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <state key="normal" title="더보기"/>
                     </button>
@@ -61,10 +70,10 @@ Label3</string>
                     <constraint firstItem="HQY-Vj-kxf" firstAttribute="trailing" secondItem="SHm-VT-uns" secondAttribute="trailing" id="2g5-Ea-pMz"/>
                     <constraint firstItem="sGY-Ng-EiZ" firstAttribute="top" secondItem="QdW-9Q-2Q4" secondAttribute="bottom" constant="8" id="6Qt-9Y-OLz"/>
                     <constraint firstAttribute="trailing" secondItem="SHm-VT-uns" secondAttribute="trailing" constant="16" id="6aG-GC-N5T"/>
-                    <constraint firstAttribute="bottom" secondItem="sGY-Ng-EiZ" secondAttribute="bottom" constant="8" id="F1O-EV-Iok"/>
+                    <constraint firstAttribute="bottom" secondItem="sGY-Ng-EiZ" secondAttribute="bottom" constant="4" id="FcF-jH-22o"/>
                     <constraint firstAttribute="trailing" secondItem="lyP-yA-chN" secondAttribute="trailing" constant="8" id="I59-km-UYZ"/>
                     <constraint firstItem="QdW-9Q-2Q4" firstAttribute="top" secondItem="ZhE-9V-qyb" secondAttribute="bottom" constant="8" id="QVS-36-fhk"/>
-                    <constraint firstAttribute="bottom" secondItem="lyP-yA-chN" secondAttribute="bottom" constant="8" id="XVg-gY-atu"/>
+                    <constraint firstAttribute="bottom" secondItem="lyP-yA-chN" secondAttribute="bottom" constant="4" id="XVg-gY-atu"/>
                     <constraint firstItem="SHm-VT-uns" firstAttribute="centerY" secondItem="ZhE-9V-qyb" secondAttribute="centerY" id="a10-zl-YjA"/>
                     <constraint firstAttribute="trailing" secondItem="sGY-Ng-EiZ" secondAttribute="trailing" constant="16" id="aMb-NE-edB"/>
                     <constraint firstItem="sGY-Ng-EiZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="dGe-R6-nwd"/>

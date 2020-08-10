@@ -18,8 +18,7 @@ class ScreenShotCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        print(frame.width)
-        print(frame.height)
+
         screenShotImageView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 250)
         screenShotImageView.cornerRadius = 8.0
         screenShotImageView.clipsToBounds = true

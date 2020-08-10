@@ -31,6 +31,11 @@ class HeaderViewCell: UITableViewCell {
         super.prepareForReuse()
         disposeBag = DisposeBag()
     }
+
+    func configuration(viewModel: AppDetailViewCellViewModel) {
+        self.selectionStyle = .none
+        bind(viewModel: viewModel)
+    }
     
     func bind(viewModel: AppDetailViewCellViewModel) {
         viewModel.outputs.appSubject.subscribe(onNext: { [unowned self] app in
