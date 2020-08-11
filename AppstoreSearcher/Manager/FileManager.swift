@@ -15,7 +15,8 @@ class FileManager {
     func loadHistory() -> [History] {
         var histories: [History]?
         guard let url = Bundle.main.url(forResource: resource, withExtension: "plist") else {
-            fatalError("resource not exist")
+            debugPrint("resource not exist")
+            return []
         }
         
         if let data = try? Data(contentsOf: url) {
@@ -38,7 +39,8 @@ class FileManager {
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .xml
         guard let url = Bundle.main.url(forResource: resource, withExtension: "plist") else {
-            fatalError("resource not exist")
+            debugPrint("resource not exist")
+            return [newHistory]
         }
         
         do {

@@ -37,14 +37,14 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchViewCell" id="U0b-PP-m1a" customClass="SearchViewCell" customModule="AppstoreSearcher" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="88" width="414" height="42"/>
+                                        <rect key="frame" x="0.0" y="88" width="414" height="42.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U0b-PP-m1a" id="olj-T3-IaH">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="42"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="42.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Erx-rD-Ag9">
-                                                    <rect key="frame" x="20" y="11" width="374" height="20"/>
+                                                    <rect key="frame" x="20" y="11" width="374" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -238,6 +238,7 @@
                                         <connections>
                                             <outlet property="appIconImageView" destination="dSb-Is-kcn" id="rsS-EM-691"/>
                                             <outlet property="genreLabel" destination="nNl-t7-4yc" id="j5r-ai-oq8"/>
+                                            <outlet property="getButton" destination="NhT-1I-5w2" id="cAj-dA-PoE"/>
                                             <outlet property="nameLable" destination="3X9-rK-AJM" id="Sgx-PF-xKd"/>
                                             <outlet property="ratingCountLabel" destination="zGr-Zf-gXn" id="fM4-Bb-XjV"/>
                                             <outlet property="ratingStar" destination="uFP-Mk-0eO" id="ObD-Rj-gmu"/>
@@ -346,14 +347,14 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HistoryViewCell" id="80x-Ra-bo6" customClass="HistoryViewCell" customModule="AppstoreSearcher" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="80x-Ra-bo6" id="ndM-zc-2xI">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ApK-vc-aSt">
-                                                    <rect key="frame" x="16" y="11.5" width="20" height="20"/>
+                                                    <rect key="frame" x="16" y="12" width="20" height="20"/>
                                                     <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="ZoX-Y8-O0a"/>
@@ -361,7 +362,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83s-Cp-wMk">
-                                                    <rect key="frame" x="44" y="11" width="342" height="21"/>
+                                                    <rect key="frame" x="44" y="11" width="342" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

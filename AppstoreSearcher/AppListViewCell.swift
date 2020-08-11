@@ -21,6 +21,7 @@ class AppListViewCell: UITableViewCell {
     @IBOutlet weak var screenShotImageView2: UIImageView!
     @IBOutlet weak var screenShotImageView3: UIImageView!
     @IBOutlet weak var ratingStar: CosmosView!
+    @IBOutlet weak var getButton: UIButton!
     
     var viewModel: AppListViewCellViewModel?
     
@@ -35,6 +36,10 @@ class AppListViewCell: UITableViewCell {
     
     func configuration(viewModel: AppListViewCellViewModel) {
         self.selectionStyle = .none
+        if traitCollection.userInterfaceStyle == .dark {
+            self.getButton.backgroundColor = UIColor.secondarySystemBackground
+        }
+            
         bind(viewModel: viewModel)
     }
     

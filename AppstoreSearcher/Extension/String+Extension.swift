@@ -14,6 +14,7 @@ extension String {
         // 만
         if self.count > 4 {
             if self.count == 5 {
+                // 소수점 첫번째가 0이면 전부 생략
                 if result[index(result.startIndex, offsetBy: 1)] == "0" {
                     result.removeLast(4)
                 } else {
@@ -29,6 +30,7 @@ extension String {
         // 천
         if self.count > 3 {
             if self.count == 4 {
+                // 소수점 첫번째가 0이면 전부 생략
                 if result[index(result.startIndex, offsetBy: 1)] == "0" {
                     result.removeLast(3)
                 } else {

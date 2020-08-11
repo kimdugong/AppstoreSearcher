@@ -91,7 +91,12 @@ class SearchViewController: UIViewController {
         
         searchController.searchBar.rx.text
             .distinctUntilChanged()
-            .map{ _ in true }
+            .map({ (query) -> Bool in
+                if let query = query, !query.isEmpty {
+                    return true
+                }
+                return false
+            })
             .bind(to: viewModel.outputs.showSearchResult)
             .disposed(by: disposeBag)
         
