@@ -29,10 +29,10 @@ class HistoryViewController: UIViewController {
             self.tableView.deselectRow(at: indexPath, animated: true)
         }).disposed(by: disposeBag)
         
-        tableView.rx.modelSelected(String.self).subscribe(onNext: { [unowned self] (query) in
-            debugPrint("modelSelected", query)
-            self.viewModel.outputs.searchType.onNext(.appList(query: query))
-            self.viewModel.inputs.requestSearch(with: query)
+        tableView.rx.modelSelected(History.self).subscribe(onNext: { [unowned self] history in
+            debugPrint("modelSelected", history)
+            self.viewModel.outputs.searchType.onNext(.appList(query: history.keyword))
+            self.viewModel.inputs.requestSearch(with: history.keyword)
         }).disposed(by: disposeBag)
         
         viewModel.outputs.filteredHistory.asObservable().bind(to: tableView.rx.items(cellIdentifier: HistoryViewCell.identifier, cellType: HistoryViewCell.self)){ [unowned self] (row, history, cell) in

@@ -16,7 +16,7 @@ protocol HistoryViewCellViewModelInputs {
 
 protocol HistoryViewCellViewModelOutputs {
     var searchTextSubject: Observable<String> { get }
-    var history: BehaviorSubject<String> { get }
+    var history: BehaviorSubject<History> { get }
 }
 
 protocol HistoryViewCellViewModelType {
@@ -32,12 +32,12 @@ struct HistoryViewCellViewModel: HistoryViewCellViewModelType, HistoryViewCellVi
     var searchTextSubject: Observable<String> {
         return searchText.asObserver()
     }
-    var history: BehaviorSubject<String>
+    var history: BehaviorSubject<History>
     // input
     var searchText: BehaviorSubject<String>
     
-    init(history: String, searchText: BehaviorSubject<String>) {
-        self.history = BehaviorSubject<String>(value: history)
+    init(history: History, searchText: BehaviorSubject<String>) {
+        self.history = BehaviorSubject<History>(value: history)
         self.searchText = searchText
     }
 

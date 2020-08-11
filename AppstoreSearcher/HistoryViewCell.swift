@@ -29,9 +29,9 @@ class HistoryViewCell: UITableViewCell {
     }
     
     private func bind(viewModel: HistoryViewCellViewModel) {
-        Observable.combineLatest(viewModel.outputs.searchTextSubject, viewModel.outputs.history)
-            .asDriver(onErrorJustReturn: ("", "")).drive(onNext: { (searchText, history) in
-                self.titleLabel.attributedText = self.setHighlight(labelText: history, highlited: searchText)
+        Observable.combineLatest(viewModel.outputs.searchTextSubject, viewModel.outputs.history).asObservable()
+            .subscribe(onNext: { (searchText, history) in
+                self.titleLabel.attributedText = self.setHighlight(labelText: history.keyword, highlited: searchText)
             }).disposed(by: disposeBag)
     }
     

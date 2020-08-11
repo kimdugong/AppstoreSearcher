@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		42209D8524E1BB530054F1E0 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42209D8424E1BB530054F1E0 /* String+Extension.swift */; };
+		42209D8724E28B7F0054F1E0 /* History.plist in Resources */ = {isa = PBXBuildFile; fileRef = 42209D8624E28B7F0054F1E0 /* History.plist */; };
+		42209D8924E28D5E0054F1E0 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42209D8824E28D5E0054F1E0 /* History.swift */; };
+		42209D8B24E28D8B0054F1E0 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42209D8A24E28D8B0054F1E0 /* FileManager.swift */; };
 		42426B5524DA462300DFB7E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42426B5424DA462300DFB7E3 /* AppDelegate.swift */; };
 		42426B5724DA462300DFB7E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42426B5624DA462300DFB7E3 /* SceneDelegate.swift */; };
 		42426B5924DA462300DFB7E3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42426B5824DA462300DFB7E3 /* SearchViewController.swift */; };
@@ -47,6 +50,9 @@
 
 /* Begin PBXFileReference section */
 		42209D8424E1BB530054F1E0 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		42209D8624E28B7F0054F1E0 /* History.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = History.plist; sourceTree = "<group>"; };
+		42209D8824E28D5E0054F1E0 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		42209D8A24E28D8B0054F1E0 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		42426B5124DA462300DFB7E3 /* AppstoreSearcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppstoreSearcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42426B5424DA462300DFB7E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42426B5624DA462300DFB7E3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +148,7 @@
 		42426B6C24DA8AB100DFB7E3 /* SupportFile */ = {
 			isa = PBXGroup;
 			children = (
+				42209D8624E28B7F0054F1E0 /* History.plist */,
 				42426B5F24DA462700DFB7E3 /* LaunchScreen.storyboard */,
 				42426B5424DA462300DFB7E3 /* AppDelegate.swift */,
 				42426B5624DA462300DFB7E3 /* SceneDelegate.swift */,
@@ -171,6 +178,7 @@
 				4252767F24DBDF010043ACEB /* Response.swift */,
 				4252768324DCE5DF0043ACEB /* SearchViewType.swift */,
 				429122EE24DD7F0600E5B097 /* NetworkError.swift */,
+				42209D8824E28D5E0054F1E0 /* History.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,6 +188,7 @@
 			children = (
 				429122EA24DD6FB800E5B097 /* NetworkManager.swift */,
 				429122EC24DD7CA700E5B097 /* API.swift */,
+				42209D8A24E28D8B0054F1E0 /* FileManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -287,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4291230F24E0102D00E5B097 /* MoreInfoViewCell.xib in Resources */,
+				42209D8724E28B7F0054F1E0 /* History.plist in Resources */,
 				4291230B24E0101A00E5B097 /* ScreenShotViewCell.xib in Resources */,
 				4291230724E00FFA00E5B097 /* ContentViewCell.xib in Resources */,
 				42426B6124DA462700DFB7E3 /* LaunchScreen.storyboard in Resources */,
@@ -360,6 +370,7 @@
 				4252768224DCD2BD0043ACEB /* AppListViewModel.swift in Sources */,
 				42426B7124DA920800DFB7E3 /* SearchViewModel.swift in Sources */,
 				4291230A24E0101A00E5B097 /* ScreenShotViewCell.swift in Sources */,
+				42209D8B24E28D8B0054F1E0 /* FileManager.swift in Sources */,
 				4291230E24E0102D00E5B097 /* MoreInfoViewCell.swift in Sources */,
 				42426B6B24DA6ECB00DFB7E3 /* HistoryViewCell.swift in Sources */,
 				42426B6924DA67AB00DFB7E3 /* HistoryViewController.swift in Sources */,
@@ -368,6 +379,7 @@
 				42426B5724DA462300DFB7E3 /* SceneDelegate.swift in Sources */,
 				4252768424DCE5DF0043ACEB /* SearchViewType.swift in Sources */,
 				429122EF24DD7F0600E5B097 /* NetworkError.swift in Sources */,
+				42209D8924E28D5E0054F1E0 /* History.swift in Sources */,
 				429122ED24DD7CA700E5B097 /* API.swift in Sources */,
 				429122F624DF992200E5B097 /* AppDetailViewController.swift in Sources */,
 				429122F424DEBA0200E5B097 /* UIView+Extension.swift in Sources */,

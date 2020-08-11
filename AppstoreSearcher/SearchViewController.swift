@@ -14,15 +14,7 @@ class SearchViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
-    static var sampleData: [String] = [
-        "카카오",
-        "app2",
-        "app3",
-        "app4",
-        "app5"
-    ]
-    
-    private let viewModel = SearchViewModel(history: sampleData)
+    private var viewModel: SearchViewModel!
     
     private lazy var searchController: UISearchController = { [weak self] in
         let historyViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HistoryViewController") as HistoryViewController
@@ -39,12 +31,16 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let histories = FileManager.shared.loadHistory()
+        print(histories)
+        viewModel = SearchViewModel(history: histories)
+        
         navigationItem.title = "Search"
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         extendedLayoutIncludesOpaqueBars = true
         definesPresentationContext = true
-
+        
         tableView.tableFooterView = UIView()
         bind()
     }
@@ -103,10 +99,10 @@ class SearchViewController: UIViewController {
             .subscribe(onNext: self.transition)
             .disposed(by: disposeBag)
         
-        tableView.rx.modelSelected(String.self).subscribe(onNext: { [unowned self] (query) in
+        tableView.rx.modelSelected(History.self).subscribe(onNext: { [unowned self] (history) in
             self.searchController.isActive = true
-            self.viewModel.outputs.searchType.onNext(.appList(query: query))
-            self.viewModel.inputs.requestSearch(with: query)
+            self.viewModel.outputs.searchType.onNext(.appList(query: history.keyword))
+            self.viewModel.inputs.requestSearch(with: history.keyword)
         }).disposed(by: disposeBag)
         
         tableView.rx.itemSelected.subscribe(onNext: { [unowned self] (indexPath) in

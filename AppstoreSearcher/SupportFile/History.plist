@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>keyword</key>
+		<string>카카오뱅크</string>
+		<key>createdAt</key>
+		<date>2020-08-11T08:23:21Z</date>
+	</dict>
+	<dict>
+		<key>keyword</key>
+		<string>카카오방크</string>
+		<key>createdAt</key>
+		<date>2020-08-11T08:24:08Z</date>
+	</dict>
+	<dict>
+		<key>keyword</key>
+		<string>카카오봉크</string>
+		<key>createdAt</key>
+		<date>2020-08-11T08:24:40Z</date>
+	</dict>
+</array>
+</plist>

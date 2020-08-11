@@ -32,7 +32,7 @@ class API: APIModel {
     private static let baseURL = "https://itunes.apple.com"
     
     static func search(query: String) -> Observable<[App]> {
-        let params = [("term", query), ("entity", "software"), ("country", "KR"), ("limit", "10")]
+        let params = [("term", query), ("entity", "software"), ("country", "KR"), ("limit", "50")]
         let response: Observable<Response> = NetworkManager.shared.request(url: baseURL, resource: Resource.search.path, method: .get, params: params)
         
         return response.map{ $0.results }.asObservable()

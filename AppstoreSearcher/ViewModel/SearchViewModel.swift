@@ -12,7 +12,7 @@ import RxCocoa
 
 protocol SearchViewModelInputs {
     var searchText: BehaviorSubject<String> { get }
-    var history: BehaviorSubject<[String]> { get }
+    var history: BehaviorSubject<[History]> { get }
     func addHistory(with query: String)
     func requestSearch(with query: String)
 }
@@ -20,8 +20,8 @@ protocol SearchViewModelInputs {
 protocol SearchViewModelOutputs {
     var searchType: BehaviorSubject<SearchViewType> { get }
     var showSearchResult: BehaviorRelay<Bool> { get }
-    var filteredHistory: Observable<[String]> { get }
-    var historySubject: Observable<[String]> { get }
+    var filteredHistory: Observable<[History]> { get }
+    var historySubject: Observable<[History]> { get }
     var appList: PublishSubject<[App]> { get }
     var showLoading: BehaviorRelay<Bool> { get }
 }
@@ -40,8 +40,8 @@ struct SearchViewModel: SearchViewModelType, SearchViewModelInputs, SearchViewMo
     
     // output
     var searchType = BehaviorSubject<SearchViewType>(value: .home)
-    var filteredHistory: Observable<[String]>
-    var historySubject: Observable<[String]> {
+    var filteredHistory: Observable<[History]>
+    var historySubject: Observable<[History]> {
         return history.asObserver()
     }
     var appList = PublishSubject<[App]>()
@@ -50,30 +50,30 @@ struct SearchViewModel: SearchViewModelType, SearchViewModelInputs, SearchViewMo
     
     
     // input
-    var history: BehaviorSubject<[String]>
+    var history: BehaviorSubject<[History]>
     var searchText = BehaviorSubject<String>(value: "")
     func addHistory(with query: String) {
         debugPrint("addHistory", query)
         guard let value = try? history.value() else {
             return
         }
-        history.onNext([query] + value)
+        let newHistory = History(keyword: query, createdAt: Date())
+        let updatedHistories = FileManager.shared.updateHistory(histories: value, newHistory: newHistory)
+        history.onNext(updatedHistories)
     }
+    
     func requestSearch(with query: String) {
         debugPrint("requestSearch", query)
+        addHistory(with: query)
         self.showLoading.accept(true)
         API.search(query: query)
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInteractive))
-            
             .do(afterNext: { (appList) in
-                print("afterNext")
                 self.showLoading.accept(false)
             },afterError: { (error) in
-                print("afterError")
                 self.showLoading.accept(false)
             })
             .observeOn(MainScheduler.instance)
-            
             .subscribe(onNext: { (newAppList) in
                 self.appList.onNext(newAppList)
             }, onError: { error in
@@ -81,11 +81,11 @@ struct SearchViewModel: SearchViewModelType, SearchViewModelInputs, SearchViewMo
             }).disposed(by: disposeBag)
     }
     
-    init(history: [String] = []) {
-        self.history = BehaviorSubject<[String]>(value: history)
-        self.filteredHistory = Observable<[String]>
-            .combineLatest(self.history, self.searchText) { (history, searchText) -> [String] in
-                return history.filter({ $0.prefix(searchText.count).caseInsensitiveCompare(searchText) == .orderedSame })
+    init(history: [History] = []) {
+        self.history = BehaviorSubject<[History]>(value: history)
+        self.filteredHistory = Observable<[History]>
+            .combineLatest(self.history, self.searchText) { (history, searchText) -> [History] in
+                return history.filter({ $0.keyword.prefix(searchText.count).caseInsensitiveCompare(searchText) == .orderedSame })
         }
     }
     

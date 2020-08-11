@@ -30,7 +30,7 @@ class SearchViewCell: UITableViewCell {
     
     func bind(viewModel: HistoryViewCellViewModel) {
         viewModel.outputs.history.subscribe(onNext: { [unowned self] history in
-            self.titleLabel.text = history
+            self.titleLabel.text = history.keyword
         }).disposed(by: disposeBag)
     }
 }
