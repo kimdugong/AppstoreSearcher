@@ -40,6 +40,7 @@ class ContentViewCell: UITableViewCell {
         viewModel.outputs.appSubject.subscribe(onNext: { [unowned self] app in
             self.versionLabel.text = "버전 \(app.version)"
             self.whatsNewLabel.text = app.releaseNotes
+            self.ratingLabel.text = "\(String(app.ratingCount).formattingKorean())개의 평가"
             self.moreButton.isHidden = app.releaseNotes?.split(separator: "\n").count ?? 0 < 4
             
         }).disposed(by: disposeBag)

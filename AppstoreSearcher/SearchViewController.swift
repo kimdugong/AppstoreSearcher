@@ -102,6 +102,7 @@ class SearchViewController: UIViewController {
         tableView.rx.modelSelected(History.self).subscribe(onNext: { [unowned self] (history) in
             self.searchController.isActive = true
             self.viewModel.outputs.searchType.onNext(.appList(query: history.keyword))
+            self.viewModel.inputs.searchText.onNext(history.keyword)
             self.viewModel.inputs.requestSearch(with: history.keyword)
         }).disposed(by: disposeBag)
         

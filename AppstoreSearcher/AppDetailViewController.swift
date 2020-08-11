@@ -24,9 +24,6 @@ class AppDetailViewController: UIViewController {
         tableView.register(UINib(nibName: "ContentViewCell", bundle: nil), forCellReuseIdentifier: ContentViewCell.identifier)
         tableView.register(UINib(nibName: "ScreenShotViewCell", bundle: nil), forCellReuseIdentifier: ScreenShotViewCell.identifier)
         
-        viewModel.outputs.appSubject.map{ [$0, $0] }.subscribe { (app) in
-            print(app)
-        }.disposed(by: disposeBag)
         bind()
     }
     
@@ -64,7 +61,6 @@ class AppDetailViewController: UIViewController {
         }.disposed(by: disposeBag)
 
         viewModel.outputs.isMoreInfoSubject.filter{ $0 }.drive(onNext: { isMoreInfo in
-//            self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
             UIView.setAnimationsEnabled(false)
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
