@@ -15,7 +15,8 @@ protocol HistoryViewCellViewModelInputs {
 }
 
 protocol HistoryViewCellViewModelOutputs {
-    var searchTextSubject: Driver<String> { get }
+    var searchTextSubject: Observable<String> { get }
+    var history: BehaviorSubject<String> { get }
 }
 
 protocol HistoryViewCellViewModelType {
@@ -24,15 +25,20 @@ protocol HistoryViewCellViewModelType {
 }
 
 struct HistoryViewCellViewModel: HistoryViewCellViewModelType, HistoryViewCellViewModelInputs, HistoryViewCellViewModelOutputs {
-
     var inputs: HistoryViewCellViewModelInputs { return self }
     var outputs: HistoryViewCellViewModelOutputs { return self }
 
     // output
-    var searchTextSubject: Driver<String> {
-        return searchText.asDriver(onErrorJustReturn: "")
+    var searchTextSubject: Observable<String> {
+        return searchText.asObserver()
     }
+    var history: BehaviorSubject<String>
     // input
     var searchText: BehaviorSubject<String>
+    
+    init(history: String, searchText: BehaviorSubject<String>) {
+        self.history = BehaviorSubject<String>(value: history)
+        self.searchText = searchText
+    }
 
 }

@@ -11,5 +11,5 @@ import Foundation
 enum SearchViewType {
     case home
     case search
-    case appList(query: String)
+    case appList(query: String?)
 }

@@ -7,11 +7,30 @@
 //
 
 import UIKit
+import RxSwift
 
 class SearchViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     
     static let identifier = "SearchViewCell"
+    
+    var viewModel: HistoryViewCellViewModel?
+    
+    private(set) var disposeBag = DisposeBag()
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+
+    func configuration(viewModel: HistoryViewCellViewModel) {
+        bind(viewModel: viewModel)
+    }
+    
+    func bind(viewModel: HistoryViewCellViewModel) {
+        viewModel.outputs.history.subscribe(onNext: { [unowned self] history in
+            self.titleLabel.text = history
+        }).disposed(by: disposeBag)
+    }
 }

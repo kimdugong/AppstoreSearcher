@@ -15,14 +15,13 @@ protocol SearchViewModelInputs {
     var history: BehaviorSubject<[String]> { get }
     func addHistory(with query: String)
     func requestSearch(with query: String)
-    var searchControllerIsActive: BehaviorSubject<Bool> { get }
 }
 
 protocol SearchViewModelOutputs {
+    var searchType: BehaviorSubject<SearchViewType> { get }
     var filteredHistory: Observable<[String]> { get }
     var historySubject: Observable<[String]> { get }
     var appList: PublishSubject<[App]> { get }
-    var searchControllerIsActiveSubject: Driver<Bool> { get }
 }
 
 protocol SearchViewModelType {
@@ -32,49 +31,43 @@ protocol SearchViewModelType {
 
 
 struct SearchViewModel: SearchViewModelType, SearchViewModelInputs, SearchViewModelOutputs {
-    var searchControllerIsActiveSubject: Driver<Bool> {
-        return searchControllerIsActive.asDriver(onErrorJustReturn: false)
-    }
-
-    var appList = PublishSubject<[App]>()
-
     var inputs: SearchViewModelInputs { return self }
     var outputs: SearchViewModelOutputs { return self }
     
     let disposeBag = DisposeBag()
-
+    
     // output
-    var searchControllerIsActive = BehaviorSubject<Bool>(value: false)
-    var filteredHistory: Observable<[String]>
-    var historySubject: Observable<[String]> {
+    internal var searchType = BehaviorSubject<SearchViewType>(value: .home)
+    internal var filteredHistory: Observable<[String]>
+    internal var historySubject: Observable<[String]> {
         return history.asObserver()
     }
-
+    internal var appList = PublishSubject<[App]>()
+    
+    
     // input
-    var history: BehaviorSubject<[String]>
-    var searchText = BehaviorSubject<String>(value: "")
-    func addHistory(with query: String) {
+    internal var history: BehaviorSubject<[String]>
+    internal var searchText = BehaviorSubject<String>(value: "")
+    internal func addHistory(with query: String) {
         debugPrint("addHistory", query)
         guard let value = try? history.value() else {
             return
         }
         history.onNext([query] + value)
     }
-
-    func requestSearch(with query: String) {
+    internal func requestSearch(with query: String) {
         debugPrint("requestSearch", query)
-//        API.search(query: query).subscribe(onNext: { (newAppList) in
-//            self.appList.onNext(newAppList)
-//        }).disposed(by: disposeBag)
-        API.search(query: query).bind(to: appList).disposed(by: disposeBag)
+        API.search(query: query).subscribe(onNext: { (newAppList) in
+            self.appList.onNext(newAppList)
+        }).disposed(by: disposeBag)
     }
-
+    
     init(history: [String] = []) {
         self.history = BehaviorSubject<[String]>(value: history)
         self.filteredHistory = Observable<[String]>
-            .combineLatest(self.history.asObserver(), self.searchText.asObservable()) { (history, searchText) -> [String] in
+            .combineLatest(self.history, self.searchText) { (history, searchText) -> [String] in
                 return history.filter({ $0.prefix(searchText.count).caseInsensitiveCompare(searchText) == .orderedSame })
         }
     }
-
+    
 }

@@ -12,7 +12,7 @@ import Cosmos
 import Kingfisher
 
 class AppListViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var appIconImageView: UIImageView!
     @IBOutlet weak var nameLable: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
@@ -32,13 +32,18 @@ class AppListViewCell: UITableViewCell {
         super.prepareForReuse()
         disposeBag = DisposeBag()
     }
-
-    func bind(viewModel: AppListViewCellViewModel) {
+    
+    func configuration(viewModel: AppListViewCellViewModel) {
+        self.selectionStyle = .none
+        bind(viewModel: viewModel)
+    }
+    
+    private func bind(viewModel: AppListViewCellViewModel) {
         viewModel.outputs.appSubject.subscribe(onNext: {[unowned self] app in
             self.nameLable.text = app.name
             self.genreLabel.text = app.genre
             self.ratingStar.rating = app.rating
-            self.ratingCountLabel.text = String(app.ratingCount)
+            self.ratingCountLabel.text = String(app.ratingCount).formattingKorean()
         }).disposed(by: disposeBag)
         
         viewModel.outputs.iconImage.subscribe(onNext: { [unowned self] iconImage in

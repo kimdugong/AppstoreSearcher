@@ -28,7 +28,7 @@ protocol AppDetailViewCellViewModelType {
 }
 
 struct AppDetailViewCellViewModel: AppDetailViewCellViewModelType, AppDetailViewCellViewModelInputs, AppDeatailViewCellViewModelOutputs {
-
+    
     var inputs: AppDetailViewCellViewModelInputs { return self }
     var outputs: AppDeatailViewCellViewModelOutputs { return self }
     
@@ -51,7 +51,7 @@ struct AppDetailViewCellViewModel: AppDetailViewCellViewModelType, AppDetailView
         self.iconImage = self.app
             .compactMap { URL(string: $0.iconLarge) ?? nil }
             .asObservable()
-
+        
         self.isMoreInfo = BehaviorSubject<Bool>(value: false)
         
         self.screenShotImages = self.app.observeOn(MainScheduler.instance)

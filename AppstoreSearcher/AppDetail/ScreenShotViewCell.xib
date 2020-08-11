@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="미리보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ih6-AU-8x1">
-                        <rect key="frame" x="16" y="16" width="70" height="24"/>
+                        <rect key="frame" x="16" y="16" width="70" height="16"/>
                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -38,7 +38,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Xad-r5-lpz" secondAttribute="bottom" constant="8" id="Dht-iW-obx"/>
-                    <constraint firstItem="Xad-r5-lpz" firstAttribute="top" secondItem="ih6-AU-8x1" secondAttribute="bottom" constant="8" id="IlZ-Ro-HwW"/>
+                    <constraint firstItem="Xad-r5-lpz" firstAttribute="top" secondItem="ih6-AU-8x1" secondAttribute="bottom" constant="16" id="IlZ-Ro-HwW"/>
                     <constraint firstItem="ih6-AU-8x1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="LQw-rU-RAD"/>
                     <constraint firstItem="ih6-AU-8x1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="VhE-dB-NNj"/>
                     <constraint firstAttribute="trailing" secondItem="Xad-r5-lpz" secondAttribute="trailing" id="sHj-M7-2YE"/>

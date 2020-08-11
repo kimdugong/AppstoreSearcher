@@ -9,11 +9,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Content" rowHeight="131" id="KGk-i7-Jjw" customClass="ContentViewCell" customModule="AppstoreSearcher" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="131"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Content" rowHeight="135" id="KGk-i7-Jjw" customClass="ContentViewCell" customModule="AppstoreSearcher" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="131"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새로운 기능" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhE-9V-qyb">
@@ -31,9 +31,8 @@
                         <state key="normal" title="버전 기록"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="버전 1.8" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdW-9Q-2Q4">
-                        <rect key="frame" x="16" y="48" width="43.5" height="16"/>
+                        <rect key="frame" x="16" y="48" width="91" height="16"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="43.5" id="y94-7e-H4S"/>
                             <constraint firstAttribute="height" constant="16" id="yF9-Im-q3l"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -47,7 +46,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="clip" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGY-Ng-EiZ">
-                        <rect key="frame" x="16" y="72" width="288" height="55"/>
+                        <rect key="frame" x="16" y="72" width="288" height="47"/>
                         <string key="text">Label
 Label2
 Label3</string>
@@ -56,7 +55,7 @@ Label3</string>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyP-yA-chN">
-                        <rect key="frame" x="242" y="111" width="70" height="16"/>
+                        <rect key="frame" x="242" y="103" width="70" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="70" id="NQ6-yo-6s6"/>
                             <constraint firstAttribute="height" constant="16" id="cer-fT-tcE"/>
@@ -70,10 +69,11 @@ Label3</string>
                     <constraint firstItem="HQY-Vj-kxf" firstAttribute="trailing" secondItem="SHm-VT-uns" secondAttribute="trailing" id="2g5-Ea-pMz"/>
                     <constraint firstItem="sGY-Ng-EiZ" firstAttribute="top" secondItem="QdW-9Q-2Q4" secondAttribute="bottom" constant="8" id="6Qt-9Y-OLz"/>
                     <constraint firstAttribute="trailing" secondItem="SHm-VT-uns" secondAttribute="trailing" constant="16" id="6aG-GC-N5T"/>
-                    <constraint firstAttribute="bottom" secondItem="sGY-Ng-EiZ" secondAttribute="bottom" constant="4" id="FcF-jH-22o"/>
+                    <constraint firstItem="QdW-9Q-2Q4" firstAttribute="trailing" secondItem="ZhE-9V-qyb" secondAttribute="trailing" id="6hs-5l-GFO"/>
+                    <constraint firstAttribute="bottom" secondItem="sGY-Ng-EiZ" secondAttribute="bottom" constant="16" id="FcF-jH-22o"/>
                     <constraint firstAttribute="trailing" secondItem="lyP-yA-chN" secondAttribute="trailing" constant="8" id="I59-km-UYZ"/>
                     <constraint firstItem="QdW-9Q-2Q4" firstAttribute="top" secondItem="ZhE-9V-qyb" secondAttribute="bottom" constant="8" id="QVS-36-fhk"/>
-                    <constraint firstAttribute="bottom" secondItem="lyP-yA-chN" secondAttribute="bottom" constant="4" id="XVg-gY-atu"/>
+                    <constraint firstAttribute="bottom" secondItem="lyP-yA-chN" secondAttribute="bottom" constant="16" id="XVg-gY-atu"/>
                     <constraint firstItem="SHm-VT-uns" firstAttribute="centerY" secondItem="ZhE-9V-qyb" secondAttribute="centerY" id="a10-zl-YjA"/>
                     <constraint firstAttribute="trailing" secondItem="sGY-Ng-EiZ" secondAttribute="trailing" constant="16" id="aMb-NE-edB"/>
                     <constraint firstItem="sGY-Ng-EiZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="dGe-R6-nwd"/>
@@ -89,7 +89,7 @@ Label3</string>
                 <outlet property="versionLabel" destination="QdW-9Q-2Q4" id="gNw-7w-SXW"/>
                 <outlet property="whatsNewLabel" destination="sGY-Ng-EiZ" id="aSq-BU-HIR"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="156.36160714285714"/>
+            <point key="canvasLocation" x="131.8840579710145" y="157.70089285714286"/>
         </tableViewCell>
     </objects>
 </document>

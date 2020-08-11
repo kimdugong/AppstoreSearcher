@@ -39,7 +39,7 @@ class AppListViewController: UIViewController {
     
     private func bind() {
         viewModel.outputs.appList.asObserver().bind(to: tableView.rx.items(cellIdentifier: AppListViewCell.identifier, cellType: AppListViewCell.self)){ (row, app, cell) in
-            cell.bind(viewModel: AppListViewCellViewModel(app: app))
+            cell.configuration(viewModel: AppListViewCellViewModel(app: app))
         }.disposed(by: disposeBag)
 
         tableView.rx.modelSelected(App.self).subscribe(onNext: { [unowned self](app) in

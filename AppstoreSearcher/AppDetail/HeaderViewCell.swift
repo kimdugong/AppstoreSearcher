@@ -43,7 +43,7 @@ class HeaderViewCell: UITableViewCell {
             self.descriptionLabel.text = app.sellerName
             self.ratingStar.rating = app.rating
             self.ratingLabel.text = String(format: "%.1f",  app.rating)
-            self.ratingCountLabel.text = String(app.ratingCount)
+            self.ratingCountLabel.text = "\(String(app.ratingCount).formattingKorean())개의 평가"
             self.genreLabel.text = app.genre
             self.gradeLabel.text = app.grade
         }).disposed(by: disposeBag)
