@@ -14,8 +14,8 @@
             filePath = "AppstoreSearcher/AppListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "bind()"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "AppstoreSearcher/AppListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -87,80 +87,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C3F2BFFB-2CCF-4249-816C-62F4A5EAAFCC"
-            shouldBeEnabled = "No"
+            uuid = "78A1280F-F31F-43AD-89FA-B04F4F35A35D"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AppstoreSearcher/SearchViewController.swift"
+            filePath = "AppstoreSearcher/ViewModel/SearchViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "transition(searchType:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C3F2BFFB-2CCF-4249-816C-62F4A5EAAFCC - f312edc9fd25e244"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AppstoreSearcher.SearchViewController.(transition in _C8C350C3F5DDD972457036B7876A8CE0)(searchType: AppstoreSearcher.SearchViewType) -&gt; ()"
-                  moduleName = "AppstoreSearcher"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dugong/Developer/AppstoreSearcher/AppstoreSearcher/SearchViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "216">
-               </Location>
-               <Location
-                  uuid = "C3F2BFFB-2CCF-4249-816C-62F4A5EAAFCC - f312edc9fd25e244"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AppstoreSearcher.SearchViewController.(transition in _C8C350C3F5DDD972457036B7876A8CE0)(searchType: AppstoreSearcher.SearchViewType) -&gt; ()"
-                  moduleName = "AppstoreSearcher"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dugong/Developer/AppstoreSearcher/AppstoreSearcher/SearchViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "312">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "792B47E5-664C-41A2-BAD5-9843AFC0C3EB"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AppstoreSearcher/SearchViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "transition(searchType:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D391C28D-B278-4951-808D-70317014A1F2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AppstoreSearcher/SearchViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "bind()"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "requestSearch(with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

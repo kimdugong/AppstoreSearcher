@@ -44,7 +44,7 @@ class SearchViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         extendedLayoutIncludesOpaqueBars = true
         definesPresentationContext = true
-        
+
         tableView.tableFooterView = UIView()
         bind()
     }
@@ -52,53 +52,54 @@ class SearchViewController: UIViewController {
     private func transition(searchType: SearchViewType) {
         switch searchType {
         case .appList(let query):
-            let appListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "AppListViewController") as AppListViewController
-            appListVC.viewModel = self.viewModel
-            self.searchController.searchBar.text = query
-            self.addChild(appListVC)
-            self.view.addSubview(appListVC.view)
             DispatchQueue.main.async { [weak self] in
+                if self?.children.count == 0 {
+                    let appListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "AppListViewController") as AppListViewController
+                    appListVC.viewModel = self?.viewModel
+                    self?.addChild(appListVC)
+                    
+                    self?.view.addSubview(appListVC.view)
+                }
+                self?.searchController.searchBar.text = query
                 self?.searchController.searchBar.resignFirstResponder()
                 self?.searchController.showsSearchResultsController = false
             }
         case .home:
-            if self.children.count > 0 {
-                self.children.forEach {
-                    $0.willMove(toParent: nil)
-                    $0.view.removeFromSuperview()
-                    $0.removeFromParent()
-                }
-            }
             DispatchQueue.main.async { [weak self] in
+                if self?.children.count ?? 0 > 0 {
+                    self?.children.forEach {
+                        $0.willMove(toParent: nil)
+                        $0.view.removeFromSuperview()
+                        $0.removeFromParent()
+                    }
+                }
                 self?.searchController.showsSearchResultsController = false
             }
-        case .search:
-            searchController.showsSearchResultsController = true
-            break
         }
-        
     }
     
     private func bind() {
-        searchController.searchBar.rx.text.orEmpty.bind(to: viewModel.inputs.searchText).disposed(by: disposeBag)
+        searchController.searchBar.rx.text.orEmpty.distinctUntilChanged().bind(to: viewModel.inputs.searchText).disposed(by: disposeBag)
         searchController.searchBar.rx.searchButtonClicked.withLatestFrom(viewModel.inputs.searchText).subscribe(onNext: { [unowned self] (query) in
             self.viewModel.inputs.addHistory(with: query)
             self.viewModel.outputs.searchType.onNext(.appList(query: query))
             self.viewModel.inputs.requestSearch(with: query)
         }).disposed(by: disposeBag)
         
-        searchController.searchBar.rx.cancelButtonClicked.subscribe(onNext: { [unowned self] _ in
-            self.viewModel.outputs.searchType.onNext(.home)
-        }).disposed(by: disposeBag)
+        viewModel.outputs.showSearchResult
+            .subscribe(onNext: { self.searchController.showsSearchResultsController = $0 })
+            .disposed(by: disposeBag)
         
-        searchController.searchBar.rx.text.changed.subscribe(onNext: { (query) in
-            if query == "" {
-                self.viewModel.outputs.searchType.onNext(.home)
-            }
-            self.viewModel.outputs.searchType.onNext(.search)
-        }).disposed(by: disposeBag)
+        searchController.searchBar.rx.cancelButtonClicked.map{ _ in SearchViewType.home }.bind(to: viewModel.outputs.searchType)
+            .disposed(by: disposeBag)
         
-        viewModel.outputs.searchType.subscribeOn(MainScheduler.instance)
+        searchController.searchBar.rx.text
+            .distinctUntilChanged()
+            .map{ _ in true }
+            .bind(to: viewModel.outputs.showSearchResult)
+            .disposed(by: disposeBag)
+        
+        viewModel.outputs.searchType
             .subscribe(onNext: self.transition)
             .disposed(by: disposeBag)
         
@@ -112,7 +113,8 @@ class SearchViewController: UIViewController {
             self.tableView.deselectRow(at: indexPath, animated: true)
         }).disposed(by: disposeBag)
         
-        viewModel.outputs.historySubject.bind(to: tableView.rx.items(cellIdentifier: SearchViewCell.identifier, cellType: SearchViewCell.self)) { (row, history, cell) in
+        viewModel.outputs.historySubject
+            .bind(to: tableView.rx.items(cellIdentifier: SearchViewCell.identifier, cellType: SearchViewCell.self)) { (row, history, cell) in
             let viewModel = HistoryViewCellViewModel(history: history, searchText: self.viewModel.searchText)
             cell.configuration(viewModel: viewModel)
         }.disposed(by: disposeBag)

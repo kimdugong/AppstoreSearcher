@@ -11,7 +11,6 @@ import Foundation
 extension String {
     func formattingKorean() -> String {
         var result = self
-        
         // 만
         if self.count > 4 {
             if self.count == 5 {

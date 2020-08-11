@@ -19,9 +19,11 @@ protocol SearchViewModelInputs {
 
 protocol SearchViewModelOutputs {
     var searchType: BehaviorSubject<SearchViewType> { get }
+    var showSearchResult: BehaviorRelay<Bool> { get }
     var filteredHistory: Observable<[String]> { get }
     var historySubject: Observable<[String]> { get }
     var appList: PublishSubject<[App]> { get }
+    var showLoading: BehaviorRelay<Bool> { get }
 }
 
 protocol SearchViewModelType {
@@ -37,29 +39,46 @@ struct SearchViewModel: SearchViewModelType, SearchViewModelInputs, SearchViewMo
     let disposeBag = DisposeBag()
     
     // output
-    internal var searchType = BehaviorSubject<SearchViewType>(value: .home)
-    internal var filteredHistory: Observable<[String]>
-    internal var historySubject: Observable<[String]> {
+    var searchType = BehaviorSubject<SearchViewType>(value: .home)
+    var filteredHistory: Observable<[String]>
+    var historySubject: Observable<[String]> {
         return history.asObserver()
     }
-    internal var appList = PublishSubject<[App]>()
+    var appList = PublishSubject<[App]>()
+    var showLoading: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    var showSearchResult: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
     
     // input
-    internal var history: BehaviorSubject<[String]>
-    internal var searchText = BehaviorSubject<String>(value: "")
-    internal func addHistory(with query: String) {
+    var history: BehaviorSubject<[String]>
+    var searchText = BehaviorSubject<String>(value: "")
+    func addHistory(with query: String) {
         debugPrint("addHistory", query)
         guard let value = try? history.value() else {
             return
         }
         history.onNext([query] + value)
     }
-    internal func requestSearch(with query: String) {
+    func requestSearch(with query: String) {
         debugPrint("requestSearch", query)
-        API.search(query: query).subscribe(onNext: { (newAppList) in
-            self.appList.onNext(newAppList)
-        }).disposed(by: disposeBag)
+        self.showLoading.accept(true)
+        API.search(query: query)
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInteractive))
+            
+            .do(afterNext: { (appList) in
+                print("afterNext")
+                self.showLoading.accept(false)
+            },afterError: { (error) in
+                print("afterError")
+                self.showLoading.accept(false)
+            })
+            .observeOn(MainScheduler.instance)
+            
+            .subscribe(onNext: { (newAppList) in
+                self.appList.onNext(newAppList)
+            }, onError: { error in
+                debugPrint(error)
+            }).disposed(by: disposeBag)
     }
     
     init(history: [String] = []) {
